@@ -21,5 +21,17 @@ namespace SupermarketTheAlgorithm
             Value = value;
             Graph = graph;
         }
+
+        /// <summary>
+        /// Adds an egde from this node to endNode
+        /// </summary>
+        /// <param name="endNode"></param>
+        /// <returns></returns>
+        public Egde<T> AddEgde(Node<T> endNode)
+        {
+            Egde<T> egde = new Egde<T>(this, endNode);
+            Egdes.Add(egde);
+            return egde;
+        }
     }
 }

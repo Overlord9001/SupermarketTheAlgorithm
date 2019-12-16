@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.supermarketPictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // supermarketPictureBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(86, 51);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(636, 361);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.supermarketPictureBox.Location = new System.Drawing.Point(86, 51);
+            this.supermarketPictureBox.Name = "supermarketPictureBox";
+            this.supermarketPictureBox.Size = new System.Drawing.Size(636, 361);
+            this.supermarketPictureBox.TabIndex = 0;
+            this.supermarketPictureBox.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.supermarketPictureBox);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox supermarketPictureBox;
     }
 }
 
