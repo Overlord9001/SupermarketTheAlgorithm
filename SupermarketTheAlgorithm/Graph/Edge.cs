@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    public class Egde<T>
+    public class Edge<T>
     {
         public Node<T> SourceNode { get; set; }
         public Node<T> EndNode { get; set; }
