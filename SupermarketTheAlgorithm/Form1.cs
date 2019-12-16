@@ -15,6 +15,18 @@ namespace SupermarketTheAlgorithm
         public Form1()
         {
             InitializeComponent();
+            MyList.MyLinkedList<int> list = new MyList.MyLinkedList<int>();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            list.Remove(3);
+            string tmp = "";
+            foreach (var item in list)
+            {
+                tmp = tmp + item.ToString() + " ";
+            }
+            testTextBox.Text = tmp;
         }
     }
 }
