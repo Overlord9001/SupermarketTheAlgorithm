@@ -34,7 +34,7 @@ namespace SupermarketTheAlgorithm
             //testTextBox.Text = tmp;
         }
 
-        private void supermarketPictureBox_Paint(object sender, PaintEventArgs e)
+        private void supermarketPictureBoxPaintGrid(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             int numOfCells = 200;
