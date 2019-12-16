@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SupermarketTheAlgorithm.MyList
+namespace SupermarketTheAlgorithm
 {
-    class MyLinkedList<T> : IEnumerable
+    public class MyLinkedList<T> : IEnumerable
     {
         private bool empty = true;
         public MyLinkedListNode<T> First { get; set; }

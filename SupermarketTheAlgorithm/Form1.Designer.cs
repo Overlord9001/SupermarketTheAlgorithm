@@ -34,17 +34,18 @@
             // 
             // supermarketPictureBox
             // 
-            this.supermarketPictureBox.Location = new System.Drawing.Point(86, 51);
+            this.supermarketPictureBox.Location = new System.Drawing.Point(12, 12);
             this.supermarketPictureBox.Name = "supermarketPictureBox";
-            this.supermarketPictureBox.Size = new System.Drawing.Size(636, 361);
+            this.supermarketPictureBox.Size = new System.Drawing.Size(501, 501);
             this.supermarketPictureBox.TabIndex = 0;
             this.supermarketPictureBox.TabStop = false;
+            this.supermarketPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.supermarketPictureBox_MouseClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 532);
             this.Controls.Add(this.supermarketPictureBox);
             this.Name = "Form1";
             this.Text = "Form1";

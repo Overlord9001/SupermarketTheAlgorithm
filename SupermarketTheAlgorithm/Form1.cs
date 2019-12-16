@@ -7,16 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SupermarketTheAlgorithm.MyList;
 
 
 namespace SupermarketTheAlgorithm
 {
     public partial class Form1 : Form
     {
+        private int gridSize = 10;
+        public Node<int>[,] Nodes { get; set; }
+
         public Form1()
         {
             InitializeComponent();
+
+            Bitmap DrawArea = new Bitmap(supermarketPictureBox.Size.Width, supermarketPictureBox.Size.Height);
+            supermarketPictureBox.Image = DrawArea;
+            supermarketPictureBoxPaintGrid();
+
+            PlaceNodes();
 
             // old testing code
             //MyList.MyLinkedList<int> list = new MyList.MyLinkedList<int>();
@@ -34,22 +42,74 @@ namespace SupermarketTheAlgorithm
             //testTextBox.Text = tmp;
         }
 
-        private void supermarketPictureBoxPaintGrid(object sender, PaintEventArgs e)
+        private void supermarketPictureBoxPaintGrid()
         {
-            Graphics g = e.Graphics;
-            int numOfCells = 200;
-            int cellSize = 5;
+            Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
+            //int numOfCells = 20;
+            int cellSize = 10;
             Pen p = new Pen(Color.Black);
 
-            for (int y = 0; y < numOfCells; ++y)
+            for (int y = 0; y < gridSize; ++y)
             {
-                g.DrawLine(p, 0, y * cellSize, numOfCells * cellSize, y * cellSize);
+                g.DrawLine(p, 0, y * cellSize, gridSize * cellSize, y * cellSize);
             }
 
-            for (int x = 0; x < numOfCells; ++x)
+            for (int x = 0; x < gridSize; ++x)
             {
-                g.DrawLine(p, x * cellSize, 0, x * cellSize, numOfCells * cellSize);
+                g.DrawLine(p, x * cellSize, 0, x * cellSize, gridSize * cellSize);
             }
+        }
+
+        private void supermarketPictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
+            SolidBrush b = new SolidBrush(Color.Blue);
+            if (true)
+            {
+
+            }
+            g.FillRectangle(b, e.X, e.Y, 10, 10);
+            supermarketPictureBox.Refresh();
+        }
+
+        private void PlaceNodes()
+        {
+            Nodes = new Node<int>[gridSize, gridSize];
+            for (int h = 0; h < gridSize; h++)
+            {
+                for (int v = 0; v < gridSize; v++)
+                {
+                    Nodes[h, v] = new Node<int>(h + "," + v);
+                }
+            }
+            for (int h = 0; h < gridSize; h++)
+            {
+                for (int v = 0; v < gridSize; v++)
+                {
+                    CreateEdges(h, v);
+                }
+            }
+        }
+
+        private void CreateEdges(int h, int v)
+        {
+            if (h != gridSize - 1)
+            Nodes[h, v].AddEgde(Nodes[h + 1, v]); // højre
+            if (h != 0)
+            Nodes[h, v].AddEgde(Nodes[h - 1, v]); // venstre
+            if (v != gridSize - 1)
+            Nodes[h, v].AddEgde(Nodes[h, v + 1]); // ned
+            if (v != 0)
+            Nodes[h, v].AddEgde(Nodes[h, v - 1]); // op
+
+            if (h != gridSize - 1 && v != gridSize - 1)
+            Nodes[h, v].AddEgde(Nodes[h + 1, v + 1]); // skrå ned højre
+            if (h != gridSize - 1 && v != 0)
+            Nodes[h, v].AddEgde(Nodes[h + 1, v - 1]); // skrå op højre
+            if (h != 0 && v != gridSize - 1)
+            Nodes[h, v].AddEgde(Nodes[h - 1, v + 1]); // skrå ned venstre
+            if (h != 0 && v != 0)
+            Nodes[h, v].AddEgde(Nodes[h - 1, v - 1]); // skrå op venstre
         }
     }
 }

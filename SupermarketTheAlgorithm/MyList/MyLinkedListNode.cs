@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SupermarketTheAlgorithm.MyList
+namespace SupermarketTheAlgorithm
 {
-    class MyLinkedListNode<T>
+    public class MyLinkedListNode<T>
     {
         public T Value { get; set; }
         public MyLinkedListNode<T> Previous { get; set; }
