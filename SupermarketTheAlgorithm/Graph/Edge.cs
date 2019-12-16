@@ -11,7 +11,7 @@ namespace SupermarketTheAlgorithm
         public Node<T> EndNode { get; set; }
         public string Name { get; set; }
 
-        public Egde(Node<T> sourceNode, Node<T> endNode)
+        public Edge(Node<T> sourceNode, Node<T> endNode)
         {
             SourceNode = sourceNode;
             EndNode = endNode;
