@@ -9,7 +9,7 @@ namespace SupermarketTheAlgorithm
     class Node<T>
     {
         public Graph<T> Graph { get; private set; }
-        public MyLinkedList<Egde<T>> Egdes { get; set; } = new MyLinkedList<Egde<T>>();
+        public MyLinkedList<Edge<T>> Edges { get; set; } = new MyLinkedList<Edge<T>>();
         public T Value { get; private set; }
         public string Name { get; private set; }
         public Node<T> Parent { get; set; }
@@ -27,10 +27,10 @@ namespace SupermarketTheAlgorithm
         /// </summary>
         /// <param name="endNode"></param>
         /// <returns></returns>
-        public Egde<T> AddEgde(Node<T> endNode)
+        public Edge<T> AddEgde(Node<T> endNode)
         {
-            Egde<T> egde = new Egde<T>(this, endNode);
-            Egdes.Add(egde);
+            Edge<T> egde = new Edge<T>(this, endNode);
+            Edges.Add(egde);
             return egde;
         }
     }

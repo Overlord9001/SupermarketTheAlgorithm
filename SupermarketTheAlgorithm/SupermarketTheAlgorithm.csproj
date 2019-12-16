@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AStar.cs" />
-    <Compile Include="Graph\Egde.cs" />
+    <Compile Include="Graph\Edge.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
