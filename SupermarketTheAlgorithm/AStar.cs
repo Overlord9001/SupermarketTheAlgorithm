@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    class AStar
+    class AStar<T>
     {
-        public void AstarAlgorithm(Node start, Node goal, int h)
+        public void AstarAlgorithm(Node<T> start, Node<T> goal, int h)
         {
 
             //denÅbneListe.add(start);  //Tilføjer current node til den åbne liste
