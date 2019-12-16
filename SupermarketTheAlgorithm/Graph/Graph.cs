@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SupermarketTheAlgorithm.MyList;
 
 namespace SupermarketTheAlgorithm
 {
     class Graph<T>
     {
-        public List<Node<T>> Nodes { get; set; } = new List<Node<T>>();
-
+        public MyLinkedList<Node<T>> Nodes { get; set; } = new MyLinkedList<Node<T>>();
         public Graph()
         {
 

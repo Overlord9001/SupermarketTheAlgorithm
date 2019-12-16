@@ -56,13 +56,20 @@ namespace SupermarketTheAlgorithm.MyList
             return newNode;
         }
 
-
+        /// <summary>
+        /// Remove the first instance of an object in the list, and returns true/false based on succes
+        /// </summary>
+        /// <param name="value">the obejct to remove</param>
+        /// <returns></returns>
         public bool Remove(T value)
         {
             MyLinkedListNode<T> toBeRemoved = null;
             MyLinkedListNode<T> tmp = First; 
+
+            // runs through the list to find the obejct to remove
             for (int i = 0; i < Count; i++)
             {
+                // compare two generic values
                 if (EqualityComparer<T>.Default.Equals(tmp.Value, value))
                 {
                     toBeRemoved = tmp; // if the values match set that node to be removed
@@ -71,30 +78,19 @@ namespace SupermarketTheAlgorithm.MyList
                 tmp = tmp.Next;
             }
 
-            //foreach (T nodeValue in this)
-            //{
-            //    // compares the two generic values
-            //    if (EqualityComparer<T>.Default.Equals(nodeValue, value))
-            //    {
-            //        toBeRemoved = nodeValue; // if the values match set that node to be removed
-            //        break;
-            //    }
-            //}
-
+            // if nothing was found return false
             if (toBeRemoved == null)
             {
                 return false;
             }
 
+            // try catch catches the exception that comes if the object is last/first in the list
             try
-            {
-
-            }
-            catch (Exception)
             {
                 toBeRemoved.Previous.Next = toBeRemoved.Next; // sets the previous node's next to the removed node's next
                 toBeRemoved.Next.Previous = toBeRemoved.Previous; // sets the next node's previous to the removed node's previous
             }
+            catch (Exception) { }
 
             toBeRemoved = null;
             Count--;
