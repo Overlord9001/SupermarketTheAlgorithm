@@ -9,6 +9,7 @@ namespace SupermarketTheAlgorithm
     class Graph<T>
     {
         public MyLinkedList<Node<T>> Nodes { get; set; } = new MyLinkedList<Node<T>>();
+
         public Graph()
         {
 

@@ -17,7 +17,7 @@ namespace SupermarketTheAlgorithm
 
             //Tilføj alle omkringliggende noder til den åbne liste 
             //og sæt current node som parent til dem.
-            
+            //start.Egdes[]
 
             while (true)
             {
