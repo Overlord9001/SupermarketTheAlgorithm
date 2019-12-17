@@ -10,8 +10,10 @@ namespace SupermarketTheAlgorithm
     public class MyLinkedList<T> : IEnumerable
     {
         private bool empty = true;
+
         public MyLinkedListNode<T> First { get; set; }
         public MyLinkedListNode<T> Last { get; set; }
+
         public int Count { get; private set; } = 0;
 
         // used so that Foreach can be used on MyLinkedList
