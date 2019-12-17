@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    public class Edge<T>
+    public class Edge
     {
-        public Node<T> SourceNode { get; set; }
-        public Node<T> EndNode { get; set; }
+        public Node SourceNode { get; set; }
+        public Node EndNode { get; set; }
         public string Name { get; set; }
 
-        public Edge(Node<T> sourceNode, Node<T> endNode)
+        public Edge(Node sourceNode, Node endNode)
         {
             SourceNode = sourceNode;
             EndNode = endNode;
