@@ -9,6 +9,7 @@ namespace SupermarketTheAlgorithm
     {
         public Node SourceNode { get; set; }
         public Node EndNode { get; set; }
+
         public string Name { get; set; }
 
         public Edge(Node sourceNode, Node endNode)

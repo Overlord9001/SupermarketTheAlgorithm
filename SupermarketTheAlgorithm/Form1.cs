@@ -14,6 +14,7 @@ namespace SupermarketTheAlgorithm
     public partial class Form1 : Form
     {
         private int gridSize = 10;
+
         public Node[,] Nodes { get; set; }
 
         public Form1()
