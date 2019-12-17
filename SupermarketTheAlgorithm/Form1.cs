@@ -15,18 +15,29 @@ namespace SupermarketTheAlgorithm
     {
         private int gridSize = 20;
         private int cellSize = 10; // must be 10
+        private Timer myTimer;
+
+        public bool RunSimulation { get; set; } = false;
         public Node[,] Nodes { get; set; }
+        public MyLinkedList<Shopper> shoppers = new MyLinkedList<Shopper>();
+        public Node Meat { get; set; }
+        public Node Fruit { get; set; }
+
 
         public Form1()
         {
             InitializeComponent();
 
             // setup
-            //supermarketPictureBox.Size = new Size((int)(gridSize * 13.5), (int)(gridSize * 13.5));
             Bitmap DrawArea = new Bitmap(supermarketPictureBox.Size.Width, supermarketPictureBox.Size.Height);
             supermarketPictureBox.Image = DrawArea;
             supermarketPictureBoxPaintGrid();
             PlaceNodes();
+            fruitPictureBox.BackColor = Color.ForestGreen;
+            meatPictureBox.BackColor = Color.DarkRed;
+            checkoutPictureBox.BackColor = Color.Gray;
+            shopperPictureBox.BackColor = Color.HotPink;
+            wallPictureBox.BackColor = Color.Black;
         }
 
         private void supermarketPictureBoxPaintGrid()
@@ -43,16 +54,6 @@ namespace SupermarketTheAlgorithm
                     g.DrawRectangle(Pens.Black, x * cellSize, y * cellSize, cellSize, cellSize);
                 }
             }
-
-            //for (int y = 0; y < gridSize; ++y)
-            //{
-            //    g.DrawLine(p, 0, y * cellSize, gridSize * cellSize, y * cellSize);
-            //}
-
-            //for (int x = 0; x < gridSize; ++x)
-            //{
-            //    g.DrawLine(p, x * cellSize, 0, x * cellSize, gridSize * cellSize);
-            //}
         }
 
         private void supermarketPictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -61,7 +62,6 @@ namespace SupermarketTheAlgorithm
             Pen p = new Pen(Color.Black);
             SolidBrush b = new SolidBrush(Color.Black);
             
-
             // rounds down the position to a 10 (53 -> 50) to draw on the grid
             string xString = e.X.ToString();
             string yString = e.Y.ToString();
@@ -82,16 +82,45 @@ namespace SupermarketTheAlgorithm
             int x = Convert.ToInt32(xString);
             int y = Convert.ToInt32(yString);
 
-            switch (selectedTextBox.Text)
+            try // in case the picturebox is clicked outside of the grid
             {
-                case "Wall":
-                    b = new SolidBrush(Color.Black);
-                    Nodes[x / 10, y / 10].isWalkable = false;
-                    break;
-                case "Walkable":
-                    b = new SolidBrush(Color.White);
-                    Nodes[x / 10, y / 10].isWalkable = true;
-                    break;
+                switch (selectedTextBox.Text)
+                {
+                    case "Wall":
+                        b = new SolidBrush(wallPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false; // divide by 10 to get position in array
+                        break;
+                    case "Walkable":
+                        b = new SolidBrush(Color.White);
+                        Nodes[x / 10, y / 10].isWalkable = true;
+                        break;
+                    case "Shopper":
+                        b = new SolidBrush(shopperPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = true;
+                        shoppers.Add(new Shopper()
+                        {
+                            CurrentNode = Nodes[x / 10, y / 10]
+                        });
+                        break;
+                    case "Checkout":
+                        b = new SolidBrush(checkoutPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false;
+                        break;
+                    case "Fruit":
+                        b = new SolidBrush(fruitPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false;
+                        Fruit = Nodes[x / 10, y / 10];
+                        break;
+                    case "Meat":
+                        b = new SolidBrush(meatPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false;
+                        Meat = Nodes[x / 10, y / 10];
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                return;
             }
             
             g.FillRectangle(b, x, y, cellSize, cellSize);
@@ -116,6 +145,8 @@ namespace SupermarketTheAlgorithm
                     };
                 }
             }
+
+            // creates edges for all nodes
             for (int h = 0; h < gridSize; h++)
             {
                 for (int v = 0; v < gridSize; v++)
@@ -123,6 +154,33 @@ namespace SupermarketTheAlgorithm
                     CreateEdges(h, v);
                 }
             }
+        }
+
+        private void UpdateSimulation(object sender, EventArgs e)
+        {
+            myTimer.Enabled = false;
+            speedTextBox.Text += "1";
+
+            foreach (Shopper shopper in shoppers)
+            {
+                shopper.Move();
+            }
+
+            myTimer.Enabled = true;
+        }
+
+        private void beginButton_Click(object sender, EventArgs e)
+        {
+            if (RunSimulation == false)
+            {
+                myTimer = new Timer();
+                myTimer.Interval = Convert.ToInt32(speedTextBox.Text);
+                myTimer.Tick += new EventHandler(UpdateSimulation);
+                myTimer.Start();
+                RunSimulation = true;
+                beginButton.Text = "Simulation begun";
+            }
+
         }
 
         /// <summary>
@@ -160,5 +218,27 @@ namespace SupermarketTheAlgorithm
         {
             selectedTextBox.Text = "Walkable";
         }
+
+        private void fruitButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Fruit";
+        }
+
+        private void meatButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Meat";
+        }
+
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Checkout";
+        }
+
+        private void shopperButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Shopper";
+        }
+
+        
     }
 }
