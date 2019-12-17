@@ -17,6 +17,9 @@ namespace SupermarketTheAlgorithm
 
         public bool isWalkable { get; set; } = true;
 
+        public int YPos { get; set; }
+        public int XPos { get; set; }
+
         public int HScore { get; set; }
         public int GScore { get; set; }
         public int FScore { get; set; }
