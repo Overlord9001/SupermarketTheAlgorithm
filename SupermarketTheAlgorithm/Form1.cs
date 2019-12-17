@@ -15,7 +15,7 @@ namespace SupermarketTheAlgorithm
     {
         private int gridSize = 20;
         private int cellSize = 10; // must be 10
-        public Node<int>[,] Nodes { get; set; }
+        public Node[,] Nodes { get; set; }
 
         public Form1()
         {
