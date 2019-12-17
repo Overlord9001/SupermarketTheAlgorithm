@@ -15,7 +15,7 @@ namespace SupermarketTheAlgorithm
     {
         private int gridSize = 20;
         private int cellSize = 10; // must be 10
-        public Node<int>[,] Nodes { get; set; }
+        public Node[,] Nodes { get; set; }
 
         public Form1()
         {
@@ -59,19 +59,8 @@ namespace SupermarketTheAlgorithm
         {
             Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
             Pen p = new Pen(Color.Black);
-            SolidBrush b;
-            switch (selectedTextBox.Text)
-            {
-                case "Wall":
-                    b = new SolidBrush(Color.Black);
-                    break;
-                case "Walkable":
-                    b = new SolidBrush(Color.White);
-                    break;
-                default:
-                    b = new SolidBrush(Color.Black);
-                    break;
-            }
+            SolidBrush b = new SolidBrush(Color.Black);
+            
 
             // rounds down the position to a 10 (53 -> 50) to draw on the grid
             string xString = e.X.ToString();
@@ -92,6 +81,18 @@ namespace SupermarketTheAlgorithm
                 yString = "0";
             int x = Convert.ToInt32(xString);
             int y = Convert.ToInt32(yString);
+
+            switch (selectedTextBox.Text)
+            {
+                case "Wall":
+                    b = new SolidBrush(Color.Black);
+                    Nodes[x / 10, y / 10].isWalkable = false;
+                    break;
+                case "Walkable":
+                    b = new SolidBrush(Color.White);
+                    Nodes[x / 10, y / 10].isWalkable = true;
+                    break;
+            }
             
             g.FillRectangle(b, x, y, cellSize, cellSize);
             g.DrawRectangle(p, x, y, cellSize, cellSize);
@@ -108,7 +109,11 @@ namespace SupermarketTheAlgorithm
             {
                 for (int v = 0; v < gridSize; v++)
                 {
-                    Nodes[h, v] = new Node(h + "," + v);
+                    Nodes[h, v] = new Node(h + "," + v)
+                    {
+                        YPos = v,
+                        XPos = h
+                    };
                 }
             }
             for (int h = 0; h < gridSize; h++)
