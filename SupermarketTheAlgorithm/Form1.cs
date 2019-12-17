@@ -103,12 +103,12 @@ namespace SupermarketTheAlgorithm
         /// </summary>
         private void PlaceNodes()
         {
-            Nodes = new Node<int>[gridSize, gridSize];
+            Nodes = new Node[gridSize, gridSize];
             for (int h = 0; h < gridSize; h++)
             {
                 for (int v = 0; v < gridSize; v++)
                 {
-                    Nodes[h, v] = new Node<int>(h + "," + v);
+                    Nodes[h, v] = new Node(h + "," + v);
                 }
             }
             for (int h = 0; h < gridSize; h++)

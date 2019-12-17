@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    public class Graph<T>
+    public class Graph
     {
-        public MyLinkedList<Node<T>> Nodes { get; set; } = new MyLinkedList<Node<T>>();
+        public MyLinkedList<Node> Nodes { get; set; } = new MyLinkedList<Node>();
 
         public Graph()
         {
 
         }
 
-        public Node<T> AddNode(T value, string nodeName)
+        public Node AddNode(string nodeName)
         {
-            Node<T> node = new Node<T>(nodeName);
+            Node node = new Node(nodeName);
             Nodes.Add(node);
             return node;
         }

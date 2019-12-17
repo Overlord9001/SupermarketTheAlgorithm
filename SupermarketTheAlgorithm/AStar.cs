@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    class AStar<T>
+    class AStar
     {
-        public void AstarAlgorithm(Node<T> start, Node<T> goal, int h)
+        public void AstarAlgorithm(Node start, Node goal, int h)
         {
-            MyLinkedList<Node<T>> denLukkedeListe = new MyLinkedList<Node<T>>();
-            MyLinkedList<Node<T>> denÅbneListe = new MyLinkedList<Node<T>>();
+            MyLinkedList<Node> denLukkedeListe = new MyLinkedList<Node>();
+            MyLinkedList<Node> denÅbneListe = new MyLinkedList<Node>();
             denLukkedeListe.Add(start); //Tilføjer current node til den åbne liste            
 
             //Tilføj alle omkringliggende noder til den åbne liste 
             //og sæt current node som parent til dem.
-            foreach (Edge<T> item in start.Edges)
+            foreach (Edge item in start.Edges)
             {
                 if (item.EndNode.isWalkable)
                 {
@@ -25,7 +25,7 @@ namespace SupermarketTheAlgorithm
             }
 
 
-            while (true)
+            while (denLukkedeListe.First.Value != goal)
             {
 
             }

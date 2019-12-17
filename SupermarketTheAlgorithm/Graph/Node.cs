@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    public class Node<T>
+    public class Node
     {
-        public Graph<T> Graph { get; private set; }
-        public MyLinkedList<Edge<T>> Edges { get; set; } = new MyLinkedList<Edge<T>>();
-        public T Value { get; private set; }
+        public Graph Graph { get; private set; }
+        public MyLinkedList<Edge> Edges { get; set; } = new MyLinkedList<Edge>();
         public string Name { get; private set; }
-        public Node<T> Parent { get; set; }
+        public Node Parent { get; set; }
         public bool isWalkable { get; set; } = true;
 
         public Node(string nodeName)
@@ -26,9 +25,9 @@ namespace SupermarketTheAlgorithm
         /// </summary>
         /// <param name="endNode"></param>
         /// <returns></returns>
-        public Edge<T> AddEgde(Node<T> endNode)
+        public Edge AddEgde(Node endNode)
         {
-            Edge<T> egde = new Edge<T>(this, endNode);
+            Edge egde = new Edge(this, endNode);
             Edges.Add(egde);
             return egde;
         }
