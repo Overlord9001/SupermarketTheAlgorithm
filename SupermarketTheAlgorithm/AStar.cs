@@ -43,13 +43,12 @@ namespace SupermarketTheAlgorithm
 
             //Søger efter den node med laveste F-score fra den åbne liste 
             //indtil den åbne liste er tom eller goal er i den lukkede liste.
-            while (denLukkedeListe.First.Value != goal && denLukkedeListe.Last.Value != goal)
+            while (denLukkedeListe.First.Value != goal && denLukkedeListe.Last.Value != goal && denÅbneListe.Count > 0)
             {
                 Node currentNode = null;
-                bool placedFirst = false;
                 foreach (Node item in denÅbneListe)//Kører igennem for at finde den med laveste F-score
                 {
-                    if (currentNode == null && placedFirst is false)
+                    if (currentNode == null)
                     {
                         currentNode = item;
                     }
@@ -67,6 +66,11 @@ namespace SupermarketTheAlgorithm
 
                 denLukkedeListe.Add(currentNode);
                 denÅbneListe.Remove(currentNode);
+
+                if (currentNode == null) // hvis den åbne liste er tom er algoritmen færdig og kunne ikke finde en rute
+                {
+                    return null;
+                }
 
 
                 MyLinkedList<Node> tmpList = denÅbneListe;
@@ -110,7 +114,21 @@ namespace SupermarketTheAlgorithm
                         if (item.EndNode == goal)
                         {
                             denLukkedeListe.Add(item.EndNode);
-                            return denLukkedeListe;
+                            MyLinkedList<Node> rute = new MyLinkedList<Node>();
+                            item.EndNode.Parent = currentNode;
+                            Node tmpNode = item.EndNode;
+                            for (int i = 0; i < denLukkedeListe.Count; i++)
+                            {
+                                rute.AddFirst(tmpNode);
+
+                                if (tmpNode == start)
+                                {
+                                    break;
+                                }
+
+                                tmpNode = tmpNode.Parent;
+                            }
+                            return rute;
                         }
                         else
                         {
@@ -129,7 +147,11 @@ namespace SupermarketTheAlgorithm
 
                             //FScore
                             item.EndNode.FScore = item.EndNode.GScore + item.EndNode.HScore; //Fscore sættes
-                            denÅbneListe.Add(item.EndNode);
+                            if (item.EndNode.isWalkable) // hvis noden er walkable tilføj til den åbne liste
+                            {
+                                denÅbneListe.Add(item.EndNode);
+                            }
+                            
                         }
                         
                         item.EndNode.Parent = currentNode;

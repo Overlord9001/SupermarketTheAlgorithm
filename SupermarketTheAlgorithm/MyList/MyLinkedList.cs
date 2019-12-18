@@ -83,9 +83,8 @@ namespace SupermarketTheAlgorithm
             };
 
             First.Previous = first;
-
             First = first;
-
+            Count++;
             return first;
         }
 
@@ -96,6 +95,15 @@ namespace SupermarketTheAlgorithm
         /// <returns></returns>
         public bool Remove(T value)
         {
+            if (Count == 0)
+            {
+                return false;
+            }
+            if (First == null || Last == null)
+            {
+                Count = 0;
+                return false;
+            }
             MyLinkedListNode<T> toBeRemoved = null;
             MyLinkedListNode<T> tmp = First;
 

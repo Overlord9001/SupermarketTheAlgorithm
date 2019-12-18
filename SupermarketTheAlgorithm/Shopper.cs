@@ -41,6 +41,10 @@ namespace SupermarketTheAlgorithm
             if (Path.Count == 0)
             {
                 Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
+                if (Path == null)
+                {
+                    return;
+                }
             }
 
             CurrentNode = Path.First.Value;

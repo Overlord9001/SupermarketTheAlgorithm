@@ -215,13 +215,13 @@ namespace SupermarketTheAlgorithm
             Nodes[h, v].AddEgde(Nodes[h, v - 1]); // op
 
             if (h != gridSize - 1 && v != gridSize - 1)
-            Nodes[h, v].AddEgde(Nodes[h + 1, v + 1]); // skrå ned højre
+                Nodes[h, v].AddEgde(Nodes[h + 1, v + 1]); // skrå ned højre
             if (h != gridSize - 1 && v != 0)
-            Nodes[h, v].AddEgde(Nodes[h + 1, v - 1]); // skrå op højre
+                Nodes[h, v].AddEgde(Nodes[h + 1, v - 1]); // skrå op højre
             if (h != 0 && v != gridSize - 1)
-            Nodes[h, v].AddEgde(Nodes[h - 1, v + 1]); // skrå ned venstre
+                Nodes[h, v].AddEgde(Nodes[h - 1, v + 1]); // skrå ned venstre
             if (h != 0 && v != 0)
-            Nodes[h, v].AddEgde(Nodes[h - 1, v - 1]); // skrå op venstre
+                Nodes[h, v].AddEgde(Nodes[h - 1, v - 1]); // skrå op venstre
         }
 
         private void wallButton_Click(object sender, EventArgs e)
@@ -271,6 +271,18 @@ namespace SupermarketTheAlgorithm
             SolidBrush b = new SolidBrush(Color.Black);
 
             g.DrawRectangle(p, x, y, width, height);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (myTimer.Enabled)
+            {
+                myTimer.Enabled = false;
+            }
+            else
+            {
+                myTimer.Enabled = true;
+            }
         }
     }
 }

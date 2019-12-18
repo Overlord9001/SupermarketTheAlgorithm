@@ -52,6 +52,7 @@
             this.cheeseButton = new System.Windows.Forms.Button();
             this.cheesePictureBox = new System.Windows.Forms.PictureBox();
             this.only1Label = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meatPictureBox)).BeginInit();
@@ -280,11 +281,22 @@
             this.only1Label.TabIndex = 24;
             this.only1Label.Text = "Only 1 of these";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(473, 224);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.only1Label);
             this.Controls.Add(this.cheesePictureBox);
             this.Controls.Add(this.cheeseButton);
@@ -350,6 +362,7 @@
         private System.Windows.Forms.Button cheeseButton;
         private System.Windows.Forms.PictureBox cheesePictureBox;
         private System.Windows.Forms.Label only1Label;
+        private System.Windows.Forms.Button button1;
     }
 }
 
