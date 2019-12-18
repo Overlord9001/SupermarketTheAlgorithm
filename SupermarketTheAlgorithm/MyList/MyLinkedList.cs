@@ -133,10 +133,12 @@ namespace SupermarketTheAlgorithm
                 if (toBeRemoved.Previous == null) // Hvis den er i starten af listen
                 {
                     First = toBeRemoved.Next;
+                    toBeRemoved.Next.Previous = null;
                 }
                 if (toBeRemoved.Next == null) // Hvis den er i slutningen af listen
                 {
                     Last = toBeRemoved.Previous;
+                    toBeRemoved.Previous.Next = null;
                 }
 
                 toBeRemoved = null;
