@@ -23,6 +23,7 @@ namespace SupermarketTheAlgorithm
         {
             this.color = color;
             this.supermarketPictureBox = supermarketPictureBox;
+            GenerateShoppingList();
         }
 
         public void Move()
@@ -32,7 +33,7 @@ namespace SupermarketTheAlgorithm
             //else
                 //do something
 
-            //Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
+            Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
 
             // tilføj til astar at de kan stille sig i kø ved kassen
 
@@ -51,9 +52,9 @@ namespace SupermarketTheAlgorithm
             g.FillRectangle(b, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
             g.DrawRectangle(p, CurrentNode.XPos * 10, CurrentNode.XPos * 10, Form1.cellSize, Form1.cellSize);
 
-            if (true)
+            if (Path.Count == 0 && shoppingList.First != null)
             {
-
+                goal = shoppingList.First.Value;
             }
         }
 

@@ -7,7 +7,7 @@ namespace SupermarketTheAlgorithm
 {
     class AStar
     {
-        public void AstarAlgorithm(Node start, Node goal/*,int h*/)
+        public static MyLinkedList<Node> AstarAlgorithm(Node start, Node goal/*,int h*/)
         {
             MyLinkedList<Node> denLukkedeListe = new MyLinkedList<Node>();
             MyLinkedList<Node> denÅbneListe = new MyLinkedList<Node>();
@@ -106,6 +106,7 @@ namespace SupermarketTheAlgorithm
                         if (item.EndNode == goal)
                         {
                             denLukkedeListe.Add(item.EndNode);
+                            return denLukkedeListe;
                         }
                         else
                         {
@@ -116,7 +117,7 @@ namespace SupermarketTheAlgorithm
                     }
                 }
             }
-
+            return null; // hvis den ikke kan finde vej
         }
     }
 }
