@@ -47,12 +47,19 @@
             this.beginButton = new System.Windows.Forms.Button();
             this.speedTextBox = new System.Windows.Forms.TextBox();
             this.speedLabel = new System.Windows.Forms.Label();
+            this.breadButton = new System.Windows.Forms.Button();
+            this.breadPictureBox = new System.Windows.Forms.PictureBox();
+            this.cheeseButton = new System.Windows.Forms.Button();
+            this.cheesePictureBox = new System.Windows.Forms.PictureBox();
+            this.only1Label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meatPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkoutPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopperPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wallPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.breadPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheesePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // supermarketPictureBox
@@ -159,7 +166,7 @@
             // 
             // checkoutButton
             // 
-            this.checkoutButton.Location = new System.Drawing.Point(705, 109);
+            this.checkoutButton.Location = new System.Drawing.Point(705, 169);
             this.checkoutButton.Name = "checkoutButton";
             this.checkoutButton.Size = new System.Drawing.Size(83, 23);
             this.checkoutButton.TabIndex = 12;
@@ -169,7 +176,7 @@
             // 
             // checkoutPictureBox
             // 
-            this.checkoutPictureBox.Location = new System.Drawing.Point(676, 109);
+            this.checkoutPictureBox.Location = new System.Drawing.Point(676, 169);
             this.checkoutPictureBox.Name = "checkoutPictureBox";
             this.checkoutPictureBox.Size = new System.Drawing.Size(22, 22);
             this.checkoutPictureBox.TabIndex = 13;
@@ -177,7 +184,7 @@
             // 
             // shopperButton
             // 
-            this.shopperButton.Location = new System.Drawing.Point(705, 138);
+            this.shopperButton.Location = new System.Drawing.Point(705, 107);
             this.shopperButton.Name = "shopperButton";
             this.shopperButton.Size = new System.Drawing.Size(83, 23);
             this.shopperButton.TabIndex = 14;
@@ -187,7 +194,7 @@
             // 
             // shopperPictureBox
             // 
-            this.shopperPictureBox.Location = new System.Drawing.Point(676, 138);
+            this.shopperPictureBox.Location = new System.Drawing.Point(676, 107);
             this.shopperPictureBox.Name = "shopperPictureBox";
             this.shopperPictureBox.Size = new System.Drawing.Size(22, 22);
             this.shopperPictureBox.TabIndex = 15;
@@ -228,11 +235,61 @@
             this.speedLabel.TabIndex = 19;
             this.speedLabel.Text = "Time between updates";
             // 
+            // breadButton
+            // 
+            this.breadButton.Location = new System.Drawing.Point(705, 315);
+            this.breadButton.Name = "breadButton";
+            this.breadButton.Size = new System.Drawing.Size(83, 23);
+            this.breadButton.TabIndex = 20;
+            this.breadButton.Text = "Bread";
+            this.breadButton.UseVisualStyleBackColor = true;
+            this.breadButton.Click += new System.EventHandler(this.breadButton_Click);
+            // 
+            // breadPictureBox
+            // 
+            this.breadPictureBox.Location = new System.Drawing.Point(676, 315);
+            this.breadPictureBox.Name = "breadPictureBox";
+            this.breadPictureBox.Size = new System.Drawing.Size(22, 22);
+            this.breadPictureBox.TabIndex = 21;
+            this.breadPictureBox.TabStop = false;
+            // 
+            // cheeseButton
+            // 
+            this.cheeseButton.Location = new System.Drawing.Point(705, 345);
+            this.cheeseButton.Name = "cheeseButton";
+            this.cheeseButton.Size = new System.Drawing.Size(83, 23);
+            this.cheeseButton.TabIndex = 22;
+            this.cheeseButton.Text = "Cheese";
+            this.cheeseButton.UseVisualStyleBackColor = true;
+            this.cheeseButton.Click += new System.EventHandler(this.cheeseButton_Click);
+            // 
+            // cheesePictureBox
+            // 
+            this.cheesePictureBox.Location = new System.Drawing.Point(676, 345);
+            this.cheesePictureBox.Name = "cheesePictureBox";
+            this.cheesePictureBox.Size = new System.Drawing.Size(22, 22);
+            this.cheesePictureBox.TabIndex = 23;
+            this.cheesePictureBox.TabStop = false;
+            // 
+            // only1Label
+            // 
+            this.only1Label.AutoSize = true;
+            this.only1Label.Location = new System.Drawing.Point(684, 149);
+            this.only1Label.Name = "only1Label";
+            this.only1Label.Size = new System.Drawing.Size(104, 17);
+            this.only1Label.TabIndex = 24;
+            this.only1Label.Text = "Only 1 of these";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
+            this.Controls.Add(this.only1Label);
+            this.Controls.Add(this.cheesePictureBox);
+            this.Controls.Add(this.cheeseButton);
+            this.Controls.Add(this.breadPictureBox);
+            this.Controls.Add(this.breadButton);
             this.Controls.Add(this.speedLabel);
             this.Controls.Add(this.speedTextBox);
             this.Controls.Add(this.beginButton);
@@ -260,6 +317,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.checkoutPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shopperPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wallPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.breadPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cheesePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,6 +345,11 @@
         private System.Windows.Forms.Button beginButton;
         private System.Windows.Forms.TextBox speedTextBox;
         private System.Windows.Forms.Label speedLabel;
+        private System.Windows.Forms.Button breadButton;
+        private System.Windows.Forms.PictureBox breadPictureBox;
+        private System.Windows.Forms.Button cheeseButton;
+        private System.Windows.Forms.PictureBox cheesePictureBox;
+        private System.Windows.Forms.Label only1Label;
     }
 }
 

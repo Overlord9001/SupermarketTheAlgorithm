@@ -14,7 +14,7 @@ namespace SupermarketTheAlgorithm
     public partial class Form1 : Form
     {
         private int gridSize = 20;
-        private int cellSize = 10; // must be 10
+        public static int cellSize = 10; // must be 10
         private Timer myTimer;
 
         public bool RunSimulation { get; set; } = false;
@@ -22,6 +22,8 @@ namespace SupermarketTheAlgorithm
         public MyLinkedList<Shopper> shoppers = new MyLinkedList<Shopper>();
         public Node Meat { get; set; }
         public Node Fruit { get; set; }
+        public Node Cheese { get; set; }
+        public Node Bread { get; set; }
 
 
         public Form1()
@@ -38,13 +40,16 @@ namespace SupermarketTheAlgorithm
             checkoutPictureBox.BackColor = Color.Gray;
             shopperPictureBox.BackColor = Color.HotPink;
             wallPictureBox.BackColor = Color.Black;
+            breadPictureBox.BackColor = Color.SandyBrown;
+            cheesePictureBox.BackColor = Color.Yellow;
         }
 
+        /// <summary>
+        /// Paint the grid on the supermarket picturebox
+        /// </summary>
         private void supermarketPictureBoxPaintGrid()
         {
             Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
-            //int numOfCells = 20;
-            //int cellSize = 10;
             Pen p = new Pen(Color.Black);
 
             for (int x = 0; x < gridSize; x++)
@@ -62,7 +67,7 @@ namespace SupermarketTheAlgorithm
             Pen p = new Pen(Color.Black);
             SolidBrush b = new SolidBrush(Color.Black);
             
-            // rounds down the position to a 10 (53 -> 50) to draw on the grid
+            // rounds down the mouseposition to a 10 (53 -> 50) to draw on the grid
             string xString = e.X.ToString();
             string yString = e.Y.ToString();
             if (xString.Length > 1)
@@ -96,8 +101,8 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Shopper":
                         b = new SolidBrush(shopperPictureBox.BackColor);
-                        Nodes[x / 10, y / 10].isWalkable = true;
-                        shoppers.Add(new Shopper()
+                        Nodes[x / 10, y / 10].isWalkable = false; // can shoppers collide?
+                        shoppers.Add(new Shopper(supermarketPictureBox, shopperPictureBox.BackColor)
                         {
                             CurrentNode = Nodes[x / 10, y / 10]
                         });
@@ -115,6 +120,16 @@ namespace SupermarketTheAlgorithm
                         b = new SolidBrush(meatPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         Meat = Nodes[x / 10, y / 10];
+                        break;
+                    case "Bread":
+                        b = new SolidBrush(breadPictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false;
+                        Bread = Nodes[x / 10, y / 10];
+                        break;
+                    case "Cheese":
+                        b = new SolidBrush(cheesePictureBox.BackColor);
+                        Nodes[x / 10, y / 10].isWalkable = false;
+                        Cheese = Nodes[x / 10, y / 10];
                         break;
                 }
             }
@@ -178,7 +193,7 @@ namespace SupermarketTheAlgorithm
                 myTimer.Tick += new EventHandler(UpdateSimulation);
                 myTimer.Start();
                 RunSimulation = true;
-                beginButton.Text = "Simulation begun";
+                beginButton.Text = "Simulation running";
             }
 
         }
@@ -239,6 +254,14 @@ namespace SupermarketTheAlgorithm
             selectedTextBox.Text = "Shopper";
         }
 
-        
+        private void breadButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Bread";
+        }
+
+        private void cheeseButton_Click(object sender, EventArgs e)
+        {
+            selectedTextBox.Text = "Cheese";
+        }
     }
 }
