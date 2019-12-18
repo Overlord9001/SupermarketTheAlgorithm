@@ -104,6 +104,7 @@ namespace SupermarketTheAlgorithm
                             closedContains = true;
                         }
                     }
+
                     if (openContains == false && closedContains == false)
                     {
                         if (item.EndNode == goal)

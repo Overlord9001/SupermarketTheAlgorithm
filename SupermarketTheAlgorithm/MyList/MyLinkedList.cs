@@ -130,16 +130,14 @@ namespace SupermarketTheAlgorithm
                     toBeRemoved.Next.Previous = toBeRemoved.Previous; // sets the next node's previous to the removed node's previous
                 }
 
-                if (toBeRemoved.Previous == null)
+            if (toBeRemoved.Previous == null) // Hvis den er i starten af listen
                 {
-                    First = toBeRemoved.Next;
-                }
-                if (toBeRemoved.Next == null)
-                {
-                    Last = toBeRemoved.Previous;
-                }
+                First = toBeRemoved.Next;
             }
-            
+            if (toBeRemoved.Next == null) // Hvis den er i slutningen af listen
+                {
+                Last = toBeRemoved.Previous;
+            }
 
             toBeRemoved = null;
             Count--;
