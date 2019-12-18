@@ -116,26 +116,38 @@ namespace SupermarketTheAlgorithm
             {
                 return false;
             }
+            
+            if (Count == 1)
+            {
+                First = null;
+                Last = null;
+            }
+            else if (Count > 1)
+            {
+                if (toBeRemoved.Previous != null && toBeRemoved.Next != null)
+                {
+                    toBeRemoved.Previous.Next = toBeRemoved.Next; // sets the previous node's next to the removed node's next
+                    toBeRemoved.Next.Previous = toBeRemoved.Previous; // sets the next node's previous to the removed node's previous
+                }
 
-            // try catch catches the exception that comes if the object is last/first in the list
-            try
-            {
-                toBeRemoved.Previous.Next = toBeRemoved.Next; // sets the previous node's next to the removed node's next
-                toBeRemoved.Next.Previous = toBeRemoved.Previous; // sets the next node's previous to the removed node's previous
+                if (toBeRemoved.Previous == null)
+                {
+                    First = toBeRemoved.Next;
+                }
+                if (toBeRemoved.Next == null)
+                {
+                    Last = toBeRemoved.Previous;
+                }
             }
-            catch (Exception) { }
-
-            if (toBeRemoved.Previous == null)
-            {
-                First = toBeRemoved.Next;
-            }
-            if (toBeRemoved.Next == null)
-            {
-                Last = toBeRemoved.Previous;
-            }
+            
 
             toBeRemoved = null;
             Count--;
+            if (Count <= 0) // if the list is now empty set the bool
+            {
+                Count = 0;
+                empty = true;
+            }
             return true;
         }
     }

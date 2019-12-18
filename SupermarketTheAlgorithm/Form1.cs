@@ -101,8 +101,8 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Shopper":
                         b = new SolidBrush(shopperPictureBox.BackColor);
-                        Nodes[x / 10, y / 10].isWalkable = false; // can shoppers collide?
-                        shoppers.Add(new Shopper(supermarketPictureBox, shopperPictureBox.BackColor)
+                        Nodes[x / 10, y / 10].isWalkable = true; // can shoppers collide?
+                        shoppers.Add(new Shopper(supermarketPictureBox, shopperPictureBox.BackColor, g)
                         {
                             CurrentNode = Nodes[x / 10, y / 10]
                         });
@@ -262,6 +262,15 @@ namespace SupermarketTheAlgorithm
         private void cheeseButton_Click(object sender, EventArgs e)
         {
             selectedTextBox.Text = "Cheese";
+        }
+
+        public void DrawRectangle(int x, int y, int width, int height)
+        {
+            Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
+            Pen p = new Pen(Color.Black);
+            SolidBrush b = new SolidBrush(Color.Black);
+
+            g.DrawRectangle(p, x, y, width, height);
         }
     }
 }
