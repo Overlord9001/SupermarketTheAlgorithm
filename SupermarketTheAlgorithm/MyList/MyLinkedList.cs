@@ -97,7 +97,7 @@ namespace SupermarketTheAlgorithm
         public bool Remove(T value)
         {
             MyLinkedListNode<T> toBeRemoved = null;
-            MyLinkedListNode<T> tmp = First; 
+            MyLinkedListNode<T> tmp = First;
 
             // runs through the list to find the obejct to remove
             for (int i = 0; i < Count; i++)
@@ -116,7 +116,7 @@ namespace SupermarketTheAlgorithm
             {
                 return false;
             }
-            
+
             if (Count == 1)
             {
                 First = null;
@@ -130,21 +130,22 @@ namespace SupermarketTheAlgorithm
                     toBeRemoved.Next.Previous = toBeRemoved.Previous; // sets the next node's previous to the removed node's previous
                 }
 
-            if (toBeRemoved.Previous == null) // Hvis den er i starten af listen
+                if (toBeRemoved.Previous == null) // Hvis den er i starten af listen
                 {
-                First = toBeRemoved.Next;
-            }
-            if (toBeRemoved.Next == null) // Hvis den er i slutningen af listen
+                    First = toBeRemoved.Next;
+                }
+                if (toBeRemoved.Next == null) // Hvis den er i slutningen af listen
                 {
-                Last = toBeRemoved.Previous;
-            }
+                    Last = toBeRemoved.Previous;
+                }
 
-            toBeRemoved = null;
-            Count--;
-            if (Count <= 0) // if the list is now empty set the bool
-            {
-                Count = 0;
-                empty = true;
+                toBeRemoved = null;
+                Count--;
+                if (Count <= 0) // if the list is now empty set the bool
+                {
+                    Count = 0;
+                    empty = true;
+                }
             }
             return true;
         }
