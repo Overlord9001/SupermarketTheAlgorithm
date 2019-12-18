@@ -10,7 +10,7 @@ namespace SupermarketTheAlgorithm
 {
     public class Shopper
     {
-        MyLinkedList<string> shoppingList { get; set; } = new MyLinkedList<string>(); // skal nok ikke være string
+        MyLinkedList<Node> shoppingList { get; set; } = new MyLinkedList<Node>(); // skal nok ikke være string
         MyLinkedList<string> shoppingCart { get; set; } = new MyLinkedList<string>();
         public Node CurrentNode { get; set; }
         MyLinkedList<Node> Path { get; set; } = new MyLinkedList<Node>();
@@ -27,8 +27,13 @@ namespace SupermarketTheAlgorithm
 
         public void Move()
         {
-            
-            // brug astar til at finde rute
+            if (shoppingList.Count > 0)
+                goal = shoppingList.First.Value;
+            //else
+                //do something
+
+            //Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
+
             // tilføj til astar at de kan stille sig i kø ved kassen
 
             Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
@@ -45,11 +50,18 @@ namespace SupermarketTheAlgorithm
             b = new SolidBrush(color);
             g.FillRectangle(b, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
             g.DrawRectangle(p, CurrentNode.XPos * 10, CurrentNode.XPos * 10, Form1.cellSize, Form1.cellSize);
+
+            if (true)
+            {
+
+            }
         }
 
         private void GenerateShoppingList()
         {
-
+            shoppingList.Add(Form1.Meat);
+            shoppingList.Add(Form1.Bread);
+            shoppingList.Add(Form1.Cheese);
         }
     }
 }

@@ -20,10 +20,10 @@ namespace SupermarketTheAlgorithm
         public bool RunSimulation { get; set; } = false;
         public Node[,] Nodes { get; set; }
         public MyLinkedList<Shopper> shoppers = new MyLinkedList<Shopper>();
-        public Node Meat { get; set; }
-        public Node Fruit { get; set; }
-        public Node Cheese { get; set; }
-        public Node Bread { get; set; }
+        public static Node Meat { get; set; }
+        public static Node Fruit { get; set; }
+        public static Node Cheese { get; set; }
+        public static Node Bread { get; set; }
 
 
         public Form1()
