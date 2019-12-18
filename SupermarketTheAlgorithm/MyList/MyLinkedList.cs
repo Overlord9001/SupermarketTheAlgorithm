@@ -125,6 +125,15 @@ namespace SupermarketTheAlgorithm
             }
             catch (Exception) { }
 
+            if (toBeRemoved.Previous == null)
+            {
+                First = toBeRemoved.Next;
+            }
+            if (toBeRemoved.Next == null)
+            {
+                Last = toBeRemoved.Previous;
+            }
+
             toBeRemoved = null;
             Count--;
             return true;

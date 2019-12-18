@@ -12,7 +12,7 @@ namespace SupermarketTheAlgorithm
             MyLinkedList<Node> denLukkedeListe = new MyLinkedList<Node>();
             MyLinkedList<Node> denÅbneListe = new MyLinkedList<Node>();
 
-            denLukkedeListe.Add(start); //Tilføjer current node til den åbne liste            
+            denLukkedeListe.Add(start); //Tilføjer current node til den lukkede liste            
 
             //Tilføj alle omkringliggende noder til den åbne liste 
             //og sæt current node som parent til dem.
@@ -46,15 +46,17 @@ namespace SupermarketTheAlgorithm
             while (denLukkedeListe.First.Value != goal && denLukkedeListe.Last.Value != goal)
             {
                 Node currentNode = null;
+                bool placedFirst = false;
                 foreach (Node item in denÅbneListe)//Kører igennem for at finde den med laveste F-score
                 {
-                    if (currentNode == null)
+                    if (currentNode == null && placedFirst is false)
                     {
                         currentNode = item;
                     }
                     else if (item.FScore < currentNode.FScore)
                     {
                         currentNode = item;
+
                     }
                 }
 
@@ -65,6 +67,7 @@ namespace SupermarketTheAlgorithm
 
                 denLukkedeListe.Add(currentNode);
                 denÅbneListe.Remove(currentNode);
+
 
                 MyLinkedList<Node> tmpList = denÅbneListe;
                 foreach (Edge item in currentNode.Edges)//Løber begge lister igennem for at se om de allerede er tilføjet
@@ -110,10 +113,26 @@ namespace SupermarketTheAlgorithm
                         }
                         else
                         {
+                            //HScore
+                            item.EndNode.HScore = Math.Abs(item.EndNode.XPos - goal.XPos) + Math.Abs(item.EndNode.YPos - goal.YPos); //Tilføjer H-scoren ved at kigge på positionen for denne node i arrayet i forhold til goal noden.
+
+                            //GScore
+                            if (start.XPos != item.EndNode.XPos && start.YPos != item.EndNode.YPos) // Hvis både x og y på EndNode er forskellig fra start's x og y vil den altid være skrå
+                            {
+                                item.EndNode.GScore = 14;
+                            }
+                            else //ellers vil den altid være lige
+                            {
+                                item.EndNode.GScore = 10;
+                            }
+
+                            //FScore
+                            item.EndNode.FScore = item.EndNode.GScore + item.EndNode.HScore; //Fscore sættes
                             denÅbneListe.Add(item.EndNode);
                         }
                         
                         item.EndNode.Parent = currentNode;
+
                     }
                 }
             }
