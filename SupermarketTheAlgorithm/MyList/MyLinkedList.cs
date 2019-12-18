@@ -28,9 +28,9 @@ namespace SupermarketTheAlgorithm
         }
 
         /// <summary>
-        /// Adds a node to the end of the list
+        /// Adds a item to the end of the list
         /// </summary>
-        /// <param name="value">the value of the new node</param>
+        /// <param name="value">the value of the new item</param>
         /// <returns></returns>
         public MyLinkedListNode<T> Add(T value)
         {
@@ -56,6 +56,37 @@ namespace SupermarketTheAlgorithm
             Last = newNode; // the new node is added on the end of the list
             Count++;
             return newNode;
+        }
+
+        /// <summary>
+        /// add an item to the front of the list
+        /// </summary>
+        /// <param name="value">the value to add</param>
+        /// <returns></returns>
+        public MyLinkedListNode<T> AddFirst(T value)
+        {
+            if (empty == true)
+            {
+                MyLinkedListNode<T> newFirst = new MyLinkedListNode<T>(value);
+                First = newFirst;
+                Last = newFirst;
+                empty = false;
+                Count++;
+                return newFirst;
+
+            }
+
+            MyLinkedListNode<T> first = new MyLinkedListNode<T>(value)
+            {
+                Previous = null,
+                Next = First
+            };
+
+            First.Previous = first;
+
+            First = first;
+
+            return first;
         }
 
         /// <summary>
