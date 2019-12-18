@@ -125,11 +125,11 @@ namespace SupermarketTheAlgorithm
             }
             catch (Exception) { }
 
-            if (toBeRemoved.Previous == null)
+            if (toBeRemoved.Previous == null) // Hvis den er i starten af listen
             {
                 First = toBeRemoved.Next;
             }
-            if (toBeRemoved.Next == null)
+            if (toBeRemoved.Next == null) // Hvis den er i slutningen af listen
             {
                 Last = toBeRemoved.Previous;
             }
