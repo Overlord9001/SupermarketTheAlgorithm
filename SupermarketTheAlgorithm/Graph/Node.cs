@@ -23,6 +23,7 @@ namespace SupermarketTheAlgorithm
         public int HScore { get; set; }
         public int GScore { get; set; }
         public int FScore { get; set; }
+        public int NyGScore { get; set; }
 
         public Node(string nodeName)
         {

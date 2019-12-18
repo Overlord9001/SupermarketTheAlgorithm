@@ -58,10 +58,10 @@ namespace SupermarketTheAlgorithm
                     }
                 }
 
-                if (currentNode == goal)
-                {
-                    //stop!!
-                }
+                //if (currentNode == goal)
+                //{
+                //    //stop!!
+                //}
 
                 denLukkedeListe.Add(currentNode);
                 denÅbneListe.Remove(currentNode);
@@ -76,7 +76,21 @@ namespace SupermarketTheAlgorithm
                         if (item.EndNode == otherItem)
                         {
                             openContains = true;
-                            
+                            //Ny-GScore
+                            if (otherItem.XPos != item.EndNode.XPos && otherItem.YPos != item.EndNode.YPos) // Hvis både x og y på EndNode er forskellig fra start's x og y vil den altid være skrå
+                            {
+                                item.EndNode.NyGScore = 14 + currentNode.GScore;
+                            }
+                            else //ellers vil den altid være lige
+                            {
+                                item.EndNode.NyGScore = 10 + currentNode.GScore;
+                            }
+                            if (item.EndNode.NyGScore + item.EndNode.HScore < item.EndNode.FScore)
+                            {
+                                item.EndNode.GScore = item.EndNode.NyGScore;
+                                item.EndNode.FScore = item.EndNode.GScore + item.EndNode.HScore;
+                                item.EndNode.Parent = currentNode;
+                            }
                         }
                     }
 
@@ -89,7 +103,15 @@ namespace SupermarketTheAlgorithm
                     }
                     if (openContains == false && closedContains == false)
                     {
-                        denÅbneListe.Add(item.EndNode);
+                        if (item.EndNode == goal)
+                        {
+                            denLukkedeListe.Add(item.EndNode);
+                        }
+                        else
+                        {
+                            denÅbneListe.Add(item.EndNode);
+                        }
+                        
                         item.EndNode.Parent = currentNode;
                     }
                 }
