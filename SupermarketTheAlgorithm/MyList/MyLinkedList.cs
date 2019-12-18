@@ -117,7 +117,7 @@ namespace SupermarketTheAlgorithm
                 return false;
             }
 
-            if (Count == 1)
+            if (Count == 1) // Har fundet den, som skal fjernes, men der er kun et element tilbage i listen
             {
                 First = null;
                 Last = null;
