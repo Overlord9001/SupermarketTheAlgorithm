@@ -40,7 +40,7 @@ namespace SupermarketTheAlgorithm
             Bitmap DrawArea = new Bitmap(supermarketPictureBox.Size.Width, supermarketPictureBox.Size.Height);
             supermarketPictureBox.Image = DrawArea;
             supermarketPictureBoxPaintGrid();
-            PlaceNodes();
+            PlaceNodes(gridSize);
             fruitPictureBox.BackColor = Color.ForestGreen;
             meatPictureBox.BackColor = Color.DarkRed;
             checkoutPictureBox.BackColor = Color.Gray;
@@ -209,7 +209,7 @@ namespace SupermarketTheAlgorithm
         /// <summary>
         /// Place the nodes into the gridarray
         /// </summary>
-        public void PlaceNodes()
+        public void PlaceNodes(int gridSize)
         {
             Nodes = new Node[gridSize, gridSize];
             for (int h = 0; h < gridSize; h++)
@@ -279,8 +279,8 @@ namespace SupermarketTheAlgorithm
             {
                 foreach (Shopper item in shoppers) // draw all shoppers white on reset
                 {
-                    g.FillRectangle(b, item.CurrentNode.XPos, item.CurrentNode.YPos, cellSize, cellSize);
-                    g.DrawRectangle(Pens.Black, item.CurrentNode.XPos, item.CurrentNode.YPos, cellSize, cellSize);
+                    g.FillRectangle(b, item.CurrentNode.XPos * 10, item.CurrentNode.YPos * 10, cellSize, cellSize);
+                    g.DrawRectangle(Pens.Black, item.CurrentNode.XPos * 10, item.CurrentNode.YPos * 10, cellSize, cellSize);
                 }
                 supermarketPictureBox.Refresh();
                 
