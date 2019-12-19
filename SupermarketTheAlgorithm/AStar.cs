@@ -106,7 +106,7 @@ namespace SupermarketTheAlgorithm
 
                     if (openContains == false && closedContains == false)
                     {
-                        if (item.EndNode == goal)
+                        if (item.EndNode == goal) // Genskab ruten hvis målet er nået og returner ruten
                         {
                             denLukkedeListe.Add(item.EndNode);
                             MyLinkedList<Node> rute = new MyLinkedList<Node>();
