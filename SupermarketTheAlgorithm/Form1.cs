@@ -229,7 +229,7 @@ namespace SupermarketTheAlgorithm
             {
                 for (int v = 0; v < gridSize; v++)
                 {
-                    CreateEdges(h, v);
+                    CreateEdges(h, v, gridSize);
                 }
             }
         }
@@ -319,7 +319,7 @@ namespace SupermarketTheAlgorithm
         /// </summary>
         /// <param name="h">horizontal place in the gridarray</param>
         /// <param name="v">vertical place in the gridarray</param>
-        private void CreateEdges(int h, int v)
+        private void CreateEdges(int h, int v, int gridSize)
         {
             if (h != gridSize - 1)
             Nodes[h, v].AddEgde(Nodes[h + 1, v]); // højre
