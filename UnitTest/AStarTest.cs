@@ -40,10 +40,18 @@ namespace UnitTest
             //arrange
             Form1 form = new Form1();
             form.PlaceNodes(5);
+            Node start = form.Nodes[0, 0];
+            Node goal = form.Nodes[0, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                form.Nodes[i, 2].isWalkable = false;
+            }
+            MyLinkedList<Node> result = new MyLinkedList<Node>();
+            MyLinkedList<Node> expected = new MyLinkedList<Node>();
             //act
-            AStar.AstarAlgorithm()
+            result = AStar.AstarAlgorithm(start, goal);
             //assert
-
+            CollectionAssert.AreEqual(expected, result);
         }
     }
 }
