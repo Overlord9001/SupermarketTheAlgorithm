@@ -7,8 +7,6 @@ namespace SupermarketTheAlgorithm
 {
     public class Node
     {
-        public Graph Graph { get; private set; } //måske slettes
-
         public MyLinkedList<Edge> Edges { get; set; } = new MyLinkedList<Edge>();
 
         public Node Parent { get; set; }
@@ -29,8 +27,6 @@ namespace SupermarketTheAlgorithm
         public Node(string nodeName)
         {
             Name = nodeName;
-            //Value = value;
-            //Graph = graph;
         }
 
         /// <summary>
