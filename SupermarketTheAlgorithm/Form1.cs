@@ -209,7 +209,7 @@ namespace SupermarketTheAlgorithm
         /// <summary>
         /// Place the nodes into the gridarray
         /// </summary>
-        private void PlaceNodes()
+        public void PlaceNodes()
         {
             Nodes = new Node[gridSize, gridSize];
             for (int h = 0; h < gridSize; h++)

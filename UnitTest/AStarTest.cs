@@ -38,10 +38,12 @@ namespace UnitTest
         public void TestMethod1()
         {
             //arrange
-            AStar aStar = new AStar();
+            Form1 form = new Form1();
+            form.PlaceNodes(5);
             //act
-
+            AStar.AstarAlgorithm()
             //assert
+
         }
     }
 }
