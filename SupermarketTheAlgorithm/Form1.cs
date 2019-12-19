@@ -21,11 +21,15 @@ namespace SupermarketTheAlgorithm
         public bool RunSimulation { get; set; } = false;
         public Node[,] Nodes { get; set; }
         public MyLinkedList<Shopper> shoppers = new MyLinkedList<Shopper>();
+        public static MyLinkedList<Shopper> checkoutList = new MyLinkedList<Shopper>();
         public static Node Meat { get; set; }
         public static Node Fruit { get; set; }
         public static Node Cheese { get; set; }
         public static Node Bread { get; set; }
         public static Node Checkout { get; set; }
+
+        Graphics g;
+        SolidBrush b;
 
 
         public Form1()
@@ -46,6 +50,8 @@ namespace SupermarketTheAlgorithm
             cheesePictureBox.BackColor = Color.Yellow;
 
             failedShoppers = shoppersFailedLabel;
+            g = Graphics.FromImage(supermarketPictureBox.Image);
+            b = new SolidBrush(Color.White);
         }
 
         /// <summary>
@@ -236,25 +242,48 @@ namespace SupermarketTheAlgorithm
         private void UpdateSimulation(object sender, EventArgs e)
         {
             myTimer.Enabled = false;
-            int unfinishedShoppers = 0;
+            int finishedShoppers = 0;
+            int checkoutShoppers = 0;
             foreach (Shopper shopper in shoppers)
             {
-                if (!shopper.finished)
+                if (!shopper.finished && !shopper.inCheckout)
                 {
-                    unfinishedShoppers++;
                     shopper.Move();
                 }
-                else
+                else if (shopper.finished)
                 {
-                    statusLabel.Text = $"{shoppers.Count - unfinishedShoppers} shopper(s) finished";
+                    finishedShoppers++;
+                    statusLabel.Text = $"{finishedShoppers} shopper(s) finished";
+                }
+                else if (shopper.inCheckout)
+                {
+                    if (shopper.checkoutTimer >= 5)
+                    {
+                        shopper.finished = true;
+                        checkoutLabel.Text = $"{checkoutShoppers} shopper(s) in queue";
+                    }
+                    else
+                    {
+                        shopper.checkoutTimer++;
+                        checkoutShoppers++;
+                        checkoutLabel.Text = $"{checkoutShoppers} shopper(s) in queue";
+                    }
+                    
                 }
             }
 
             myTimer.Enabled = true;
 
             // if all shoppers are finished stop the simulation
-            if (unfinishedShoppers < 1)
+            if (finishedShoppers == shoppers.Count)
             {
+                foreach (Shopper item in shoppers) // draw all shoppers white on reset
+                {
+                    g.FillRectangle(b, item.CurrentNode.XPos, item.CurrentNode.YPos, cellSize, cellSize);
+                    g.DrawRectangle(Pens.Black, item.CurrentNode.XPos, item.CurrentNode.YPos, cellSize, cellSize);
+                }
+                supermarketPictureBox.Refresh();
+                
                 myTimer.Stop();
                 RunSimulation = false;
                 beginButton.Enabled = true;

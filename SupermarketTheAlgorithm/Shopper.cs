@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +16,8 @@ namespace SupermarketTheAlgorithm
         public Node CurrentNode { get; set; }
         MyLinkedList<Node> Path { get; set; } = new MyLinkedList<Node>();
         public bool finished = false;
+        public bool inCheckout = false;
+        public int checkoutTimer = 0;
 
         Color color;
         PictureBox supermarketPictureBox;
@@ -69,12 +72,12 @@ namespace SupermarketTheAlgorithm
                 shoppingCart.Add(goal);
                 shoppingList.Remove(goal);
             }
-            else if (Path.Count == 1 && goal == Form1.Checkout) // else if reached goal and goal was checkout, finish
+            else if (Path.Count == 1 && goal == Form1.Checkout) // else if reached goal and goal was checkout
             {
-                // remove the shopper from the picturebox and set the shopper as finished
-                g.FillRectangle(Brushes.White, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
-                g.DrawRectangle(Pens.Black, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
-                finished = true;
+                //g.FillRectangle(Brushes.White, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                //g.DrawRectangle(Pens.Black, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                //finished = true;
+                inCheckout = true;
             }
 
             supermarketPictureBox.Refresh(); // refresh the picturebox to apply changes
@@ -84,6 +87,7 @@ namespace SupermarketTheAlgorithm
         {
             Random rnd = new Random();
             int random = rnd.Next(1, 5);
+            Thread.Sleep(10);
             switch (random)
             {
                 case 1:

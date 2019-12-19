@@ -55,6 +55,7 @@
             this.tipLabel = new System.Windows.Forms.Label();
             this.statusLabel = new System.Windows.Forms.Label();
             this.shoppersFailedLabel = new System.Windows.Forms.Label();
+            this.checkoutLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meatPictureBox)).BeginInit();
@@ -213,6 +214,7 @@
             // 
             // beginButton
             // 
+            this.beginButton.Enabled = false;
             this.beginButton.Location = new System.Drawing.Point(309, 12);
             this.beginButton.Name = "beginButton";
             this.beginButton.Size = new System.Drawing.Size(155, 31);
@@ -306,18 +308,28 @@
             // shoppersFailedLabel
             // 
             this.shoppersFailedLabel.AutoSize = true;
-            this.shoppersFailedLabel.Location = new System.Drawing.Point(309, 67);
+            this.shoppersFailedLabel.Location = new System.Drawing.Point(306, 80);
             this.shoppersFailedLabel.Name = "shoppersFailedLabel";
             this.shoppersFailedLabel.Size = new System.Drawing.Size(115, 17);
             this.shoppersFailedLabel.TabIndex = 28;
             this.shoppersFailedLabel.Text = "x shoppers failed";
             this.shoppersFailedLabel.Visible = false;
             // 
+            // checkoutLabel
+            // 
+            this.checkoutLabel.AutoSize = true;
+            this.checkoutLabel.Location = new System.Drawing.Point(306, 63);
+            this.checkoutLabel.Name = "checkoutLabel";
+            this.checkoutLabel.Size = new System.Drawing.Size(148, 17);
+            this.checkoutLabel.TabIndex = 29;
+            this.checkoutLabel.Text = "0 shopper(s) in queue";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
+            this.Controls.Add(this.checkoutLabel);
             this.Controls.Add(this.shoppersFailedLabel);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.tipLabel);
@@ -389,6 +401,7 @@
         private System.Windows.Forms.Label tipLabel;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label shoppersFailedLabel;
+        private System.Windows.Forms.Label checkoutLabel;
     }
 }
 

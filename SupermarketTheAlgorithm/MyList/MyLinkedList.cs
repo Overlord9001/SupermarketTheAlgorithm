@@ -51,7 +51,7 @@ namespace SupermarketTheAlgorithm
                 Previous = Last, // the last node in the list is set to the new node's prevíous
                 Next = null // the new node's next is null because it is last
             };
-
+            this.Last = Last;
             Last.Next = newNode; // the old last's next is set to this new node
             Last = newNode; // the new node is added on the end of the list
             Count++;
@@ -148,15 +148,16 @@ namespace SupermarketTheAlgorithm
                     Last = toBeRemoved.Previous;
                     toBeRemoved.Previous.Next = null;
                 }
-
-                toBeRemoved = null;
-                Count--;
-                if (Count <= 0) // if the list is now empty set the bool
-                {
-                    Count = 0;
-                    empty = true;
-                }
             }
+
+            toBeRemoved = null;
+            Count--;
+            if (Count <= 0) // if the list is now empty set the bool
+            {
+                Count = 0;
+                empty = true;
+            }
+
             return true;
         }
     }
