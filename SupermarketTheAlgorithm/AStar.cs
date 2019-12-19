@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    class AStar
+    public class AStar
     {
-        public static MyLinkedList<Node> AstarAlgorithm(Node start, Node goal/*,int h*/)
+        public static MyLinkedList<Node> AstarAlgorithm(Node start, Node goal)
         {
             MyLinkedList<Node> denLukkedeListe = new MyLinkedList<Node>();
             MyLinkedList<Node> denÅbneListe = new MyLinkedList<Node>();
@@ -58,11 +58,6 @@ namespace SupermarketTheAlgorithm
 
                     }
                 }
-
-                //if (currentNode == goal)
-                //{
-                //    //stop!!
-                //}
 
                 denLukkedeListe.Add(currentNode);
                 denÅbneListe.Remove(currentNode);

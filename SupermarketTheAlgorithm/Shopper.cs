@@ -95,19 +95,19 @@ namespace SupermarketTheAlgorithm
                     shoppingList.Add(Form1.Cheese);
                     break;
                 case 2:
-                    shoppingList.Add(Form1.Bread);
                     shoppingList.Add(Form1.Fruit);
+                    shoppingList.Add(Form1.Bread);
                     break;
                 case 3:
-                    shoppingList.Add(Form1.Bread);
                     shoppingList.Add(Form1.Fruit);
                     shoppingList.Add(Form1.Cheese);
+                    shoppingList.Add(Form1.Bread);
                     break;
                 case 4:
+                    shoppingList.Add(Form1.Meat);
                     shoppingList.Add(Form1.Bread);
                     shoppingList.Add(Form1.Fruit);
                     shoppingList.Add(Form1.Cheese);
-                    shoppingList.Add(Form1.Meat);
                     break;
             }
         }
