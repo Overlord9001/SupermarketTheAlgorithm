@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SupermarketTheAlgorithm
 {
-    public class MyLinkedList<T> : IEnumerable
+    public class MyLinkedList<T> : IEnumerable, ICollection
     {
         private bool empty = true;
 
@@ -15,6 +15,10 @@ namespace SupermarketTheAlgorithm
         public MyLinkedListNode<T> Last { get; set; }
 
         public int Count { get; private set; } = 0;
+
+        public object SyncRoot => throw new NotImplementedException();
+
+        public bool IsSynchronized => throw new NotImplementedException();
 
         // used so that Foreach can be used on MyLinkedList
         public IEnumerator GetEnumerator()
@@ -159,6 +163,11 @@ namespace SupermarketTheAlgorithm
             }
 
             return true;
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            throw new NotImplementedException();
         }
     }
 }
