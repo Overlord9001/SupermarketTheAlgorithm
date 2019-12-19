@@ -35,8 +35,6 @@
             this.selectedLabel = new System.Windows.Forms.Label();
             this.fruitButton = new System.Windows.Forms.Button();
             this.meatButton = new System.Windows.Forms.Button();
-            this.gunsButton = new System.Windows.Forms.Button();
-            this.cocainButton = new System.Windows.Forms.Button();
             this.fruitPictureBox = new System.Windows.Forms.PictureBox();
             this.meatPictureBox = new System.Windows.Forms.PictureBox();
             this.checkoutButton = new System.Windows.Forms.Button();
@@ -134,24 +132,6 @@
             this.meatButton.UseVisualStyleBackColor = true;
             this.meatButton.Click += new System.EventHandler(this.meatButton_Click);
             // 
-            // gunsButton
-            // 
-            this.gunsButton.Location = new System.Drawing.Point(705, 256);
-            this.gunsButton.Name = "gunsButton";
-            this.gunsButton.Size = new System.Drawing.Size(83, 23);
-            this.gunsButton.TabIndex = 8;
-            this.gunsButton.Text = "Guns";
-            this.gunsButton.UseVisualStyleBackColor = true;
-            // 
-            // cocainButton
-            // 
-            this.cocainButton.Location = new System.Drawing.Point(705, 285);
-            this.cocainButton.Name = "cocainButton";
-            this.cocainButton.Size = new System.Drawing.Size(83, 23);
-            this.cocainButton.TabIndex = 9;
-            this.cocainButton.Text = "Cocain";
-            this.cocainButton.UseVisualStyleBackColor = true;
-            // 
             // fruitPictureBox
             // 
             this.fruitPictureBox.Location = new System.Drawing.Point(676, 199);
@@ -242,7 +222,7 @@
             // 
             // breadButton
             // 
-            this.breadButton.Location = new System.Drawing.Point(705, 315);
+            this.breadButton.Location = new System.Drawing.Point(705, 256);
             this.breadButton.Name = "breadButton";
             this.breadButton.Size = new System.Drawing.Size(83, 23);
             this.breadButton.TabIndex = 20;
@@ -252,7 +232,7 @@
             // 
             // breadPictureBox
             // 
-            this.breadPictureBox.Location = new System.Drawing.Point(676, 315);
+            this.breadPictureBox.Location = new System.Drawing.Point(676, 256);
             this.breadPictureBox.Name = "breadPictureBox";
             this.breadPictureBox.Size = new System.Drawing.Size(22, 22);
             this.breadPictureBox.TabIndex = 21;
@@ -260,7 +240,7 @@
             // 
             // cheeseButton
             // 
-            this.cheeseButton.Location = new System.Drawing.Point(705, 345);
+            this.cheeseButton.Location = new System.Drawing.Point(705, 286);
             this.cheeseButton.Name = "cheeseButton";
             this.cheeseButton.Size = new System.Drawing.Size(83, 23);
             this.cheeseButton.TabIndex = 22;
@@ -270,7 +250,7 @@
             // 
             // cheesePictureBox
             // 
-            this.cheesePictureBox.Location = new System.Drawing.Point(676, 345);
+            this.cheesePictureBox.Location = new System.Drawing.Point(676, 286);
             this.cheesePictureBox.Name = "cheesePictureBox";
             this.cheesePictureBox.Size = new System.Drawing.Size(22, 22);
             this.cheesePictureBox.TabIndex = 23;
@@ -348,8 +328,6 @@
             this.Controls.Add(this.checkoutButton);
             this.Controls.Add(this.meatPictureBox);
             this.Controls.Add(this.fruitPictureBox);
-            this.Controls.Add(this.cocainButton);
-            this.Controls.Add(this.gunsButton);
             this.Controls.Add(this.meatButton);
             this.Controls.Add(this.fruitButton);
             this.Controls.Add(this.selectedLabel);
@@ -381,8 +359,6 @@
         private System.Windows.Forms.Label selectedLabel;
         private System.Windows.Forms.Button fruitButton;
         private System.Windows.Forms.Button meatButton;
-        private System.Windows.Forms.Button gunsButton;
-        private System.Windows.Forms.Button cocainButton;
         private System.Windows.Forms.PictureBox fruitPictureBox;
         private System.Windows.Forms.PictureBox meatPictureBox;
         private System.Windows.Forms.Button checkoutButton;
