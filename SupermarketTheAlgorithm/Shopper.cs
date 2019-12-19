@@ -30,7 +30,7 @@ namespace SupermarketTheAlgorithm
 
         public void Move()
         {
-            Pen p = new Pen(Color.Orange);
+            Pen p = new Pen(Color.Black);
             SolidBrush b = new SolidBrush(Color.White);
 
             if (shoppingList.First != null)
@@ -39,6 +39,16 @@ namespace SupermarketTheAlgorithm
                 goal = Form1.Checkout; // set goal to checkout if shoppinglist is empty
 
             Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
+            if (Path == null) // if path can not be found, 
+            {
+                g.FillRectangle(Brushes.White, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                g.DrawRectangle(Pens.Black, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                supermarketPictureBox.Refresh();
+                finished = true;
+                Form1.failedShoppers.Text = "A shopper could not find a path";
+                Form1.failedShoppers.Visible = true;
+                return;
+            }
             Path.Remove(Path.Last.Value); // remove the goal from the path so the shopper does not step into the goal
 
             CurrentNode = Path.First.Value;

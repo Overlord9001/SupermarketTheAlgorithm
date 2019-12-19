@@ -16,6 +16,7 @@ namespace SupermarketTheAlgorithm
         private int gridSize = 20;
         public static int cellSize = 10; // must be 10
         private Timer myTimer;
+        public static Label failedShoppers;
 
         public bool RunSimulation { get; set; } = false;
         public Node[,] Nodes { get; set; }
@@ -43,6 +44,8 @@ namespace SupermarketTheAlgorithm
             wallPictureBox.BackColor = Color.Black;
             breadPictureBox.BackColor = Color.SandyBrown;
             cheesePictureBox.BackColor = Color.Yellow;
+
+            failedShoppers = shoppersFailedLabel;
         }
 
         /// <summary>
@@ -65,6 +68,10 @@ namespace SupermarketTheAlgorithm
 
         private void supermarketPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
+            if (RunSimulation) // return if the simulation is running
+            {
+                return;
+            }
             Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
             Pen p = new Pen(Color.Black);
             SolidBrush b = new SolidBrush(Color.Black);
@@ -96,10 +103,12 @@ namespace SupermarketTheAlgorithm
                     case "Wall":
                         b = new SolidBrush(wallPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false; // divide by 10 to get position in array
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         break;
                     case "Walkable":
                         b = new SolidBrush(Color.White);
                         Nodes[x / 10, y / 10].isWalkable = true;
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         break;
                     case "Shopper":
                         b = new SolidBrush(shopperPictureBox.BackColor);
@@ -114,6 +123,7 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Checkout":
                         b = new SolidBrush(checkoutPictureBox.BackColor);
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         if (Checkout != null) // if a checkout already exists draw old posision white
                         {
@@ -125,6 +135,7 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Fruit":
                         b = new SolidBrush(fruitPictureBox.BackColor);
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         if (Fruit != null)
                         {
@@ -136,6 +147,7 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Meat":
                         b = new SolidBrush(meatPictureBox.BackColor);
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         if (Meat != null)
                         {
@@ -147,6 +159,7 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Bread":
                         b = new SolidBrush(breadPictureBox.BackColor);
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         if (Bread != null)
                         {
@@ -158,6 +171,7 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Cheese":
                         b = new SolidBrush(cheesePictureBox.BackColor);
+                        UnassignNode(Nodes[x / 10, y / 10]);
                         Nodes[x / 10, y / 10].isWalkable = false;
                         if (Cheese != null)
                         {
@@ -169,7 +183,7 @@ namespace SupermarketTheAlgorithm
                         break;
                 }
 
-                // if a shopper is on the place clicked
+                // if a shopper is on the place clicked, remove that shopper
                 if (Nodes[x / 10, y / 10].Shopper != null && b.Color != shopperPictureBox.BackColor)
                 {
                     shoppers.Remove(Nodes[x / 10, y / 10].Shopper);
@@ -230,6 +244,10 @@ namespace SupermarketTheAlgorithm
                     unfinishedShoppers++;
                     shopper.Move();
                 }
+                else
+                {
+                    statusLabel.Text = $"{shoppers.Count - unfinishedShoppers} shopper(s) finished";
+                }
             }
 
             myTimer.Enabled = true;
@@ -239,7 +257,6 @@ namespace SupermarketTheAlgorithm
             {
                 myTimer.Stop();
                 RunSimulation = false;
-                beginButton.Text = "Start simulation";
                 beginButton.Enabled = true;
                 shoppers = new MyLinkedList<Shopper>();
             }
@@ -261,8 +278,9 @@ namespace SupermarketTheAlgorithm
                 myTimer.Tick += new EventHandler(UpdateSimulation);
                 myTimer.Start();
                 RunSimulation = true;
-                beginButton.Text = "Simulation running";
                 beginButton.Enabled = false;
+                statusLabel.Text = "Simulation running";
+                failedShoppers.Visible = false;
             }
 
         }
@@ -344,6 +362,22 @@ namespace SupermarketTheAlgorithm
             {
                 beginButton.Enabled = true;
             }
+            else
+            {
+                beginButton.Enabled = false;
+            }
+        }
+
+        private void UnassignNode(Node node)
+        {
+            if (Meat == node)
+                Meat = null;
+            if (Fruit == node)
+                Fruit = null;
+            if (Bread == node)
+                Bread = null;
+            if (Cheese == node)
+                Cheese = null;
         }
     }
 }

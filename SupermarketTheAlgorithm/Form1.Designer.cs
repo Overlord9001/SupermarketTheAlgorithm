@@ -53,6 +53,8 @@
             this.cheesePictureBox = new System.Windows.Forms.PictureBox();
             this.only1Label = new System.Windows.Forms.Label();
             this.tipLabel = new System.Windows.Forms.Label();
+            this.statusLabel = new System.Windows.Forms.Label();
+            this.shoppersFailedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meatPictureBox)).BeginInit();
@@ -292,11 +294,32 @@
     "te a layout.\r\nWalkable to remove walls.\r\nThen place the wares and shoppers.\r\nDon" +
     "\'t place stuff ontop of eachother.\r\n";
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(306, 46);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(145, 17);
+            this.statusLabel.TabIndex = 27;
+            this.statusLabel.Text = "Simulation not started";
+            // 
+            // shoppersFailedLabel
+            // 
+            this.shoppersFailedLabel.AutoSize = true;
+            this.shoppersFailedLabel.Location = new System.Drawing.Point(309, 67);
+            this.shoppersFailedLabel.Name = "shoppersFailedLabel";
+            this.shoppersFailedLabel.Size = new System.Drawing.Size(115, 17);
+            this.shoppersFailedLabel.TabIndex = 28;
+            this.shoppersFailedLabel.Text = "x shoppers failed";
+            this.shoppersFailedLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
+            this.Controls.Add(this.shoppersFailedLabel);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.tipLabel);
             this.Controls.Add(this.only1Label);
             this.Controls.Add(this.cheesePictureBox);
@@ -364,6 +387,8 @@
         private System.Windows.Forms.PictureBox cheesePictureBox;
         private System.Windows.Forms.Label only1Label;
         private System.Windows.Forms.Label tipLabel;
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Label shoppersFailedLabel;
     }
 }
 
