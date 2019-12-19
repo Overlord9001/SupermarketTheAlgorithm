@@ -32,7 +32,7 @@ namespace SupermarketTheAlgorithm
         /// </summary>
         /// <param name="value">the value of the new item</param>
         /// <returns></returns>
-        public MyLinkedListNode<T> Add(T value)
+        public T Add(T value)
         {
             // if the list is empty set the new node to both first and last
             if (empty == true)
@@ -42,7 +42,7 @@ namespace SupermarketTheAlgorithm
                 Last = newFirst;
                 empty = false;
                 Count++;
-                return newFirst;
+                return newFirst.Value;
 
             }
 
@@ -55,7 +55,7 @@ namespace SupermarketTheAlgorithm
             Last.Next = newNode; // the old last's next is set to this new node
             Last = newNode; // the new node is added on the end of the list
             Count++;
-            return newNode;
+            return newNode.Value;
         }
 
         /// <summary>

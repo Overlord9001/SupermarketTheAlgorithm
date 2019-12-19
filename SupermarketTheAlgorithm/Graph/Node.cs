@@ -12,6 +12,7 @@ namespace SupermarketTheAlgorithm
         public MyLinkedList<Edge> Edges { get; set; } = new MyLinkedList<Edge>();
 
         public Node Parent { get; set; }
+        public Shopper Shopper { get; set; }
 
         public string Name { get; private set; }
 

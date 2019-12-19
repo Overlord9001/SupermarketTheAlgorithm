@@ -52,7 +52,7 @@
             this.cheeseButton = new System.Windows.Forms.Button();
             this.cheesePictureBox = new System.Windows.Forms.PictureBox();
             this.only1Label = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tipLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fruitPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meatPictureBox)).BeginInit();
@@ -185,7 +185,7 @@
             // 
             // shopperButton
             // 
-            this.shopperButton.Location = new System.Drawing.Point(705, 107);
+            this.shopperButton.Location = new System.Drawing.Point(705, 140);
             this.shopperButton.Name = "shopperButton";
             this.shopperButton.Size = new System.Drawing.Size(83, 23);
             this.shopperButton.TabIndex = 14;
@@ -195,7 +195,7 @@
             // 
             // shopperPictureBox
             // 
-            this.shopperPictureBox.Location = new System.Drawing.Point(676, 107);
+            this.shopperPictureBox.Location = new System.Drawing.Point(676, 140);
             this.shopperPictureBox.Name = "shopperPictureBox";
             this.shopperPictureBox.Size = new System.Drawing.Size(22, 22);
             this.shopperPictureBox.TabIndex = 15;
@@ -225,16 +225,16 @@
             this.speedTextBox.Name = "speedTextBox";
             this.speedTextBox.Size = new System.Drawing.Size(148, 22);
             this.speedTextBox.TabIndex = 18;
-            this.speedTextBox.Text = "1000";
+            this.speedTextBox.Text = "300";
             // 
             // speedLabel
             // 
             this.speedLabel.AutoSize = true;
             this.speedLabel.Location = new System.Drawing.Point(489, 1);
             this.speedLabel.Name = "speedLabel";
-            this.speedLabel.Size = new System.Drawing.Size(151, 17);
+            this.speedLabel.Size = new System.Drawing.Size(196, 17);
             this.speedLabel.TabIndex = 19;
-            this.speedLabel.Text = "Time between updates";
+            this.speedLabel.Text = "Milliseconds between updates";
             // 
             // breadButton
             // 
@@ -275,28 +275,29 @@
             // only1Label
             // 
             this.only1Label.AutoSize = true;
-            this.only1Label.Location = new System.Drawing.Point(684, 149);
+            this.only1Label.Location = new System.Drawing.Point(651, 120);
             this.only1Label.Name = "only1Label";
-            this.only1Label.Size = new System.Drawing.Size(104, 17);
+            this.only1Label.Size = new System.Drawing.Size(147, 17);
             this.only1Label.TabIndex = 24;
-            this.only1Label.Text = "Only 1 of these";
+            this.only1Label.Text = "Must have all of below";
             // 
-            // button1
+            // tipLabel
             // 
-            this.button1.Location = new System.Drawing.Point(473, 224);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tipLabel.AutoSize = true;
+            this.tipLabel.Location = new System.Drawing.Point(12, 251);
+            this.tipLabel.Name = "tipLabel";
+            this.tipLabel.Size = new System.Drawing.Size(343, 102);
+            this.tipLabel.TabIndex = 26;
+            this.tipLabel.Text = "INFO: \r\nSelect something from the right, then click on the grid\r\nUse Wall to crea" +
+    "te a layout.\r\nWalkable to remove walls.\r\nThen place the wares and shoppers.\r\nDon" +
+    "\'t place stuff ontop of eachother.\r\n";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 501);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tipLabel);
             this.Controls.Add(this.only1Label);
             this.Controls.Add(this.cheesePictureBox);
             this.Controls.Add(this.cheeseButton);
@@ -362,7 +363,7 @@
         private System.Windows.Forms.Button cheeseButton;
         private System.Windows.Forms.PictureBox cheesePictureBox;
         private System.Windows.Forms.Label only1Label;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label tipLabel;
     }
 }
 

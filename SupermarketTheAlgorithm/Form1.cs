@@ -24,6 +24,7 @@ namespace SupermarketTheAlgorithm
         public static Node Fruit { get; set; }
         public static Node Cheese { get; set; }
         public static Node Bread { get; set; }
+        public static Node Checkout { get; set; }
 
 
         public Form1()
@@ -51,6 +52,7 @@ namespace SupermarketTheAlgorithm
         {
             Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
             Pen p = new Pen(Color.Black);
+            g.FillRectangle(Brushes.White, 0, 0, supermarketPictureBox.Width, supermarketPictureBox.Height);
 
             for (int x = 0; x < gridSize; x++)
             {
@@ -101,36 +103,76 @@ namespace SupermarketTheAlgorithm
                         break;
                     case "Shopper":
                         b = new SolidBrush(shopperPictureBox.BackColor);
-                        Nodes[x / 10, y / 10].isWalkable = true; // can shoppers collide?
-                        shoppers.Add(new Shopper(supermarketPictureBox, shopperPictureBox.BackColor, g)
+                        Nodes[x / 10, y / 10].isWalkable = true;
+                        if (Nodes[x / 10, y / 10].Shopper == null) // if a shopper already exists dont add another
                         {
-                            CurrentNode = Nodes[x / 10, y / 10]
-                        });
+                            Nodes[x / 10, y / 10].Shopper = shoppers.Add(new Shopper(supermarketPictureBox, shopperPictureBox.BackColor, g)
+                            {
+                                CurrentNode = Nodes[x / 10, y / 10]
+                            });
+                        }
                         break;
                     case "Checkout":
                         b = new SolidBrush(checkoutPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
+                        if (Checkout != null) // if a checkout already exists draw old posision white
+                        {
+                            Checkout.isWalkable = true;
+                            g.FillRectangle(Brushes.White, Checkout.XPos * 10, Checkout.YPos * 10, cellSize, cellSize);
+                            g.DrawRectangle(Pens.Black, Checkout.XPos * 10, Checkout.YPos * 10, cellSize, cellSize);
+                        }
+                        Checkout = Nodes[x / 10, y / 10];
                         break;
                     case "Fruit":
                         b = new SolidBrush(fruitPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
+                        if (Fruit != null)
+                        {
+                            Fruit.isWalkable = true;
+                            g.FillRectangle(Brushes.White, Fruit.XPos * 10, Fruit.YPos * 10, cellSize, cellSize);
+                            g.DrawRectangle(Pens.Black, Fruit.XPos * 10, Fruit.YPos * 10, cellSize, cellSize);
+                        }
                         Fruit = Nodes[x / 10, y / 10];
                         break;
                     case "Meat":
                         b = new SolidBrush(meatPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
+                        if (Meat != null)
+                        {
+                            Meat.isWalkable = true;
+                            g.FillRectangle(Brushes.White, Meat.XPos * 10, Meat.YPos * 10, cellSize, cellSize);
+                            g.DrawRectangle(Pens.Black, Meat.XPos * 10, Meat.YPos * 10, cellSize, cellSize);
+                        }
                         Meat = Nodes[x / 10, y / 10];
                         break;
                     case "Bread":
                         b = new SolidBrush(breadPictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
+                        if (Bread != null)
+                        {
+                            Bread.isWalkable = true;
+                            g.FillRectangle(Brushes.White, Bread.XPos * 10, Bread.YPos * 10, cellSize, cellSize);
+                            g.DrawRectangle(Pens.Black, Bread.XPos * 10, Bread.YPos * 10, cellSize, cellSize);
+                        }
                         Bread = Nodes[x / 10, y / 10];
                         break;
                     case "Cheese":
                         b = new SolidBrush(cheesePictureBox.BackColor);
                         Nodes[x / 10, y / 10].isWalkable = false;
+                        if (Cheese != null)
+                        {
+                            Cheese.isWalkable = true;
+                            g.FillRectangle(Brushes.White, Cheese.XPos * 10, Cheese.YPos * 10, cellSize, cellSize);
+                            g.DrawRectangle(Pens.Black, Cheese.XPos * 10, Cheese.YPos * 10, cellSize, cellSize);
+                        }
                         Cheese = Nodes[x / 10, y / 10];
                         break;
+                }
+
+                // if a shopper is on the place clicked
+                if (Nodes[x / 10, y / 10].Shopper != null && b.Color != shopperPictureBox.BackColor)
+                {
+                    shoppers.Remove(Nodes[x / 10, y / 10].Shopper);
                 }
             }
             catch (Exception)
@@ -141,6 +183,7 @@ namespace SupermarketTheAlgorithm
             g.FillRectangle(b, x, y, cellSize, cellSize);
             g.DrawRectangle(p, x, y, cellSize, cellSize);
             supermarketPictureBox.Refresh();
+            CheckAndActivateBeginButton(); // check if the begin button should activate
         }
 
         /// <summary>
@@ -171,29 +214,55 @@ namespace SupermarketTheAlgorithm
             }
         }
 
+        /// <summary>
+        /// Updates the simulation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateSimulation(object sender, EventArgs e)
         {
             myTimer.Enabled = false;
-            speedTextBox.Text += "1";
-
+            int unfinishedShoppers = 0;
             foreach (Shopper shopper in shoppers)
             {
-                shopper.Move();
+                if (!shopper.finished)
+                {
+                    unfinishedShoppers++;
+                    shopper.Move();
+                }
             }
 
             myTimer.Enabled = true;
+
+            // if all shoppers are finished stop the simulation
+            if (unfinishedShoppers < 1)
+            {
+                myTimer.Stop();
+                RunSimulation = false;
+                beginButton.Text = "Start simulation";
+                beginButton.Enabled = true;
+                shoppers = new MyLinkedList<Shopper>();
+            }
+
+            
         }
 
         private void beginButton_Click(object sender, EventArgs e)
         {
             if (RunSimulation == false)
             {
+                foreach (Shopper shopper in shoppers) // generate a shoppinglist for all shoppers when starting
+                {
+                    shopper.GenerateShoppingList();
+                }
+                // create a timer that updates the simulation
                 myTimer = new Timer();
                 myTimer.Interval = Convert.ToInt32(speedTextBox.Text);
                 myTimer.Tick += new EventHandler(UpdateSimulation);
                 myTimer.Start();
                 RunSimulation = true;
                 beginButton.Text = "Simulation running";
+                beginButton.Enabled = false;
             }
 
         }
@@ -224,6 +293,7 @@ namespace SupermarketTheAlgorithm
                 Nodes[h, v].AddEgde(Nodes[h - 1, v - 1]); // skrå op venstre
         }
 
+        #region clickEvents
         private void wallButton_Click(object sender, EventArgs e)
         {
             selectedTextBox.Text = "Wall";
@@ -263,25 +333,16 @@ namespace SupermarketTheAlgorithm
         {
             selectedTextBox.Text = "Cheese";
         }
+        #endregion
 
-        public void DrawRectangle(int x, int y, int width, int height)
+        /// <summary>
+        /// Check if all requirements for beginning the simulation is met
+        /// </summary>
+        private void CheckAndActivateBeginButton()
         {
-            Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
-            Pen p = new Pen(Color.Black);
-            SolidBrush b = new SolidBrush(Color.Black);
-
-            g.DrawRectangle(p, x, y, width, height);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (myTimer.Enabled)
+            if (Fruit != null && Meat != null && Bread != null && Cheese != null && Checkout != null && shoppers.Count > 0)
             {
-                myTimer.Enabled = false;
-            }
-            else
-            {
-                myTimer.Enabled = true;
+                beginButton.Enabled = true;
             }
         }
     }

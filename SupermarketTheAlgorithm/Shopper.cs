@@ -14,6 +14,7 @@ namespace SupermarketTheAlgorithm
         MyLinkedList<Node> shoppingCart { get; set; } = new MyLinkedList<Node>();
         public Node CurrentNode { get; set; }
         MyLinkedList<Node> Path { get; set; } = new MyLinkedList<Node>();
+        public bool finished = false;
 
         Color color;
         PictureBox supermarketPictureBox;
@@ -24,28 +25,21 @@ namespace SupermarketTheAlgorithm
         {
             this.color = color;
             this.supermarketPictureBox = supermarketPictureBox;
-            GenerateShoppingList();
             this.g = g;
         }
 
         public void Move()
         {
-            //Graphics g = Graphics.FromImage(supermarketPictureBox.Image);
             Pen p = new Pen(Color.Orange);
             SolidBrush b = new SolidBrush(Color.White);
 
-            if (shoppingList.Count > 0)
+            if (shoppingList.First != null)
                 goal = shoppingList.First.Value;
-            //else
-            //do something
-            if (Path.Count == 0)
-            {
-                Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
-                if (Path == null)
-                {
-                    return;
-                }
-            }
+            else
+                goal = Form1.Checkout; // set goal to checkout if shoppinglist is empty
+
+            Path = AStar.AstarAlgorithm(CurrentNode, goal); // brug astar til at finde rute
+            Path.Remove(Path.Last.Value); // remove the goal from the path so the shopper does not step into the goal
 
             CurrentNode = Path.First.Value;
             // paint the cell the shopper is standing on white
@@ -55,23 +49,32 @@ namespace SupermarketTheAlgorithm
             Path.Remove(Path.First.Value);
             CurrentNode = Path.First.Value;
 
+            // paint the new position with the "shopper color"
             b = new SolidBrush(color);
             g.FillRectangle(b, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
             g.DrawRectangle(p, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+            
+            if (Path.Count == 1 && shoppingList.Count > 0) // if the shopper has reached its goal go to next item in shoppinglist
+            {
+                shoppingCart.Add(goal);
+                shoppingList.Remove(goal);
+            }
+            else if (Path.Count == 1 && goal == Form1.Checkout) // else if reached goal and goal was checkout, finish
+            {
+                // remove the shopper from the picturebox and set the shopper as finished
+                g.FillRectangle(Brushes.White, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                g.DrawRectangle(Pens.Black, CurrentNode.XPos * 10, CurrentNode.YPos * 10, Form1.cellSize, Form1.cellSize);
+                finished = true;
+            }
 
-            supermarketPictureBox.Refresh();
-
-            //if (Path.Count == 0 && shoppingList.First != null)
-            //{
-            //    goal = shoppingList.First.Value;
-            //}
+            supermarketPictureBox.Refresh(); // refresh the picturebox to apply changes
         }
 
-        private void GenerateShoppingList()
+        public void GenerateShoppingList()
         {
             shoppingList.Add(Form1.Meat);
-            //shoppingList.Add(Form1.Bread);
-            //shoppingList.Add(Form1.Cheese);
+            shoppingList.Add(Form1.Bread);
+            shoppingList.Add(Form1.Cheese);
         }
     }
 }
