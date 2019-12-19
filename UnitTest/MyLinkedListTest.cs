@@ -12,7 +12,7 @@ namespace UnitTest
     public class MyLinkedListTest
     {
         [TestMethod]
-        public void AddTest()
+        public void Add()
         {
             // arrange
             MyLinkedList<int> result = new MyLinkedList<int>() { 1, 2, 3};
@@ -26,7 +26,21 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void AddFirstTest()
+        public void AddToEmpty()
+        {
+            // arrange
+            MyLinkedList<int> result = new MyLinkedList<int>();
+            MyLinkedList<int> expected = new MyLinkedList<int>() { 1 };
+
+            // act
+            result.Add(1);
+
+            // assert
+            CollectionAssert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void AddFirst()
         {
             // arrange
             MyLinkedList<int> result = new MyLinkedList<int>() { 2, 3, 4 };
@@ -40,7 +54,7 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void RemoveTest()
+        public void Remove()
         {
             // arrange
             MyLinkedList<int> result = new MyLinkedList<int>() { 1, 2, 3 , 4 };
@@ -51,6 +65,20 @@ namespace UnitTest
 
             // assert
             CollectionAssert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void RemoveFailed()
+        {
+            // arrange
+            MyLinkedList<int> testList = new MyLinkedList<int>() { 1, 2, 3, 4 };
+            bool result;
+
+            // act
+            result = testList.Remove(9);
+
+            // assert
+            Assert.IsFalse(result);
         }
     }
 }
