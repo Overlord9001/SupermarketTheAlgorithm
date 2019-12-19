@@ -288,6 +288,10 @@ namespace SupermarketTheAlgorithm
                 RunSimulation = false;
                 beginButton.Enabled = true;
                 shoppers = new MyLinkedList<Shopper>();
+                foreach (Node item in Nodes) // resets shoppers so that they can be placed on the same spots again after reset
+                {
+                    item.Shopper = null;
+                }
             }
 
             

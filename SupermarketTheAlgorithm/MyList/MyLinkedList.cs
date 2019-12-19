@@ -55,7 +55,7 @@ namespace SupermarketTheAlgorithm
                 Previous = Last, // the last node in the list is set to the new node's prevíous
                 Next = null // the new node's next is null because it is last
             };
-            this.Last = Last;
+
             Last.Next = newNode; // the old last's next is set to this new node
             Last = newNode; // the new node is added on the end of the list
             Count++;
@@ -99,15 +99,6 @@ namespace SupermarketTheAlgorithm
         /// <returns></returns>
         public bool Remove(T value)
         {
-            if (Count == 0)
-            {
-                return false;
-            }
-            if (First == null || Last == null)
-            {
-                Count = 0;
-                return false;
-            }
             MyLinkedListNode<T> toBeRemoved = null;
             MyLinkedListNode<T> tmp = First;
 
