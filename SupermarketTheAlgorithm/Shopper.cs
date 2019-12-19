@@ -82,9 +82,30 @@ namespace SupermarketTheAlgorithm
 
         public void GenerateShoppingList()
         {
-            shoppingList.Add(Form1.Meat);
-            shoppingList.Add(Form1.Bread);
-            shoppingList.Add(Form1.Cheese);
+            Random rnd = new Random();
+            int random = rnd.Next(1, 5);
+            switch (random)
+            {
+                case 1:
+                    shoppingList.Add(Form1.Bread);
+                    shoppingList.Add(Form1.Cheese);
+                    break;
+                case 2:
+                    shoppingList.Add(Form1.Bread);
+                    shoppingList.Add(Form1.Fruit);
+                    break;
+                case 3:
+                    shoppingList.Add(Form1.Bread);
+                    shoppingList.Add(Form1.Fruit);
+                    shoppingList.Add(Form1.Cheese);
+                    break;
+                case 4:
+                    shoppingList.Add(Form1.Bread);
+                    shoppingList.Add(Form1.Fruit);
+                    shoppingList.Add(Form1.Cheese);
+                    shoppingList.Add(Form1.Meat);
+                    break;
+            }
         }
     }
 }
